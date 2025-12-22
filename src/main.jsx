@@ -64,19 +64,19 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Home /> },
 			{
-				path: "jobseeker-login",
+				path: "login/user",
 				element: <JobSeekerLogin />
 			},
 			{
-				path: "company-login",
+				path: "login/company",
 				element: <CompanyLogin />
 			},
 			{
-				path: "jobseeker-register",
+				path: "register/user",
 				element: <JobSeekerRegister />
 			},
 			{
-				path: "company-register",
+				path: "register/company",
 				element: <CompanyRegister />
 			},
 			{

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { timeAgo, checkUserLoggedIn, submitApplication, withdrawJobApplicaton, getMyJobApplications } from "./../../api/ApiCalls";
+import { timeAgo, checkUserLoggedIn, renderProfileImage, submitApplication, withdrawJobApplicaton, getMyJobApplications } from "./../../api/ApiCalls";
 import { useState, useEffect } from "react";
-import Modal from './../Modal' 
+import Modal from './../Modal'
 import ApplyJob from './ApplyJob'
 
 function JobCard({ jobs }) {
@@ -48,8 +48,8 @@ function JobCard({ jobs }) {
 			const applicationId = getApplicationIdByJobId(MyAppliedJobs, jobId);
 			withdrawJobApplicaton(applicationId);
 			setMyAppliedJobs(prev =>
-                prev.filter(app => app.id !== applicationId)
-            );
+				prev.filter(app => app.id !== applicationId)
+			);
 		}
 	}
 
@@ -74,27 +74,32 @@ function JobCard({ jobs }) {
 					<div className="flex flex-col md:flex-row gap-4">
 						{/* Company Logo */}
 						<div className="flex-shrink-0">
-							<div className="h-16 w-16 rounded-lg bg-secondary flex items-center justify-center">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									className="h-8 w-8 text-[hsl(var(--color-primary))]"
-								>
-									<path d="M10 12h4" />
-									<path d="M10 8h4" />
-									<path d="M14 21v-3a2 2 0 0 0-4 0v3" />
-									<path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" />
-									<path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" />
-								</svg>
+							{job?.company?.logoUrl ? (
+								<div className="h-16 w-16 bg-[hsl(var(--color-secondary))] flex items-center justify-center">
+									<img src={renderProfileImage(job?.company?.logoUrl)} alt={job?.company?.name} className="h-16 w-16 rounded-lg bg-secondary flex items-center justify-center" />
+								</div>
+							) : (
+								<div className="h-16 w-16 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										className="h-10 w-10 text-[hsl(var(--color-primary))]"
+									>
+										<path d="M10 12h4" />
+										<path d="M10 8h4" />
+										<path d="M14 21v-3a2 2 0 0 0-4 0v3" />
+										<path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" />
+										<path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" />
+									</svg>
 
-							</div>
+								</div>
+
+							)}
 						</div>
 						{/* Job Details */}
 						<div className="flex-1 space-y-3">
@@ -184,7 +189,7 @@ function JobCard({ jobs }) {
 			))}
 
 			<Modal open={rendeModal} onClose={() => setRenderModal(false)}>
-				<ApplyJob 
+				<ApplyJob
 					setCoverMessage={setCoverMessage}
 					errorMsg={errorMsg}
 					coverMessage={coverMessage}

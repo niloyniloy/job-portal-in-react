@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getCompanyJobs, deleteCompanyJob } from "../../api/ApiCalls";
+import { getCompanyJobs, deleteCompanyJob } from "../../api/ApiCalls"; 
+import ChevronRightIcon from "./../icons/ChevronRightIcon";
+import ChevronLeftIcon from "./../icons/ChevronLeftIcon";
+
 
 function ManageJobs() {
 	const [jobs, setJobs] = useState({ count: 0, totalPages: 1, currentPage: 1, data: [] });
@@ -211,7 +214,7 @@ function ManageJobs() {
 								disabled={filters.page === 1}
 								className="btn btn-outline text-sm"
 							>
-								<i data-lucide="chevron-left" className="h-4 w-4" />
+								<ChevronLeftIcon />
 								Previous
 							</button>
 							{[...Array(jobs.totalPages)].map((_, i) => (
@@ -229,7 +232,7 @@ function ManageJobs() {
 								className="btn btn-outline text-sm"
 							>
 								Next
-								<i data-lucide="chevron-right" className="h-4 w-4" />
+								<ChevronRightIcon />
 							</button>
 						</div>
 					</div>

@@ -98,7 +98,7 @@ function CompanyRegister() {
 				<div className="w-full text-center">
 					<div className="card p-2 mb-8 inline-flex mx-auto w-full max-w-md">
 						<div className="grid grid-cols-2 gap-2 w-full">
-							<Link to={`/jobseeker-register`} className="btn btn-ghost text-center" reloadDocument>
+							<Link to={`/register/user`} className="btn btn-ghost text-center" reloadDocument>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
 								Job Seeker
 							</Link>
@@ -355,7 +355,7 @@ function CompanyRegister() {
 					<div className="mt-8 text-center text-sm text-muted-foreground">
 						Already have an account?
 						<Link
-							to={`/company-login`}
+							to={`/login/company`}
 							className="text-primary hover:underline font-medium"
 							reloadDocument
 						>

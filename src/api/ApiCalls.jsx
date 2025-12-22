@@ -761,7 +761,7 @@ export const registerJobSeeker = (userData, setToast) => {
         .then((response) => {
             setToast({ message: "Registration successful! Redirecting to login...", type: "success" });
             setTimeout(() => {
-                window.location.href = "/jobseeker-login";
+                window.location.href = "/login/user";
             }, 2000);
         })
         .catch((error) => {
@@ -774,7 +774,7 @@ export const registerCompany = (companyData, setToast) => {
         .then((response) => {
             setToast({ message: "Registration successful! Redirecting to login...", type: "success" });
             setTimeout(() => {
-                window.location.href = "/company-login";
+                window.location.href = "/login/company";
             }, 2000);
         })
         .catch((error) => {
@@ -854,10 +854,10 @@ export const getLoggedInUserProfile = (setUser, setIsAuthenticated, setRole, cur
                     "/company/applicants",
                     "/company/jobs",
                     "/company/post-job",
-                    "/company-login",
-                    "/company-register",
-                    "/jobseeker-register",
-                    "/jobseeker-login"
+                    "/login/company",
+                    "/register/company",
+                    "/register/user",
+                    "/login/user"
                 ];
 
                 let isAllowed = true;
@@ -882,10 +882,10 @@ export const getLoggedInUserProfile = (setUser, setIsAuthenticated, setRole, cur
                     "/user/applications",
                     "/user-profile",
                     "/user-profile/edit",
-                    "/company-login",
-                    "/company-register",
-                    "/jobseeker-register",
-                    "/jobseeker-login"
+                    "/login/company",
+                    "/register/company",
+                    "/register/user",
+                    "/login/user"
                 ];
 
                 let isAllowed = true;

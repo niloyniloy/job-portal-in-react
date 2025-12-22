@@ -1,8 +1,13 @@
 
 import { useParams, Link } from "react-router-dom";
 import { getMyApplicationsWithFilters, renderProfileImage, formatDate, withdrawJobApplication, getJobsRecommendations } from "./../../api/ApiCalls";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react"; 
+import UserIcon from './../icons/UserIcon' 
+import EditIcon from './../icons/EditIcon' 
+import FileTextIcon from './../icons/FileTextIcon' 
+import LightbulbIcon from './../icons/LightbulbIcon' 
+import EyeIcon from './../icons/EyeIcon'
+import MapPinSmall from './../icons/MapPinSmall'
 
 function UserProfile() {
 
@@ -83,7 +88,7 @@ function UserProfile() {
 												</div>
 												<div className="flex flex-wrap items-center gap-3 text-xs text-[hsl(var(--color-muted-foreground))] mb-3">
 													<span className="flex items-center gap-1">
-														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin h-3 w-3"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+														<MapPinSmall />
 														{job?.job?.company?.location}
 													</span>
 													<span>•</span>
@@ -103,6 +108,7 @@ function UserProfile() {
 														className="btn btn-outline text-xs h-8"
 														reloadDocument
 													>
+														<EyeIcon />
 														View Job
 													</Link>
 													<button onClick={() => withdrawApplicaton(job.id)} className="btn btn-primary  text-xs h-8">
@@ -166,7 +172,7 @@ function UserProfile() {
 												<div className="flex items-center justify-between">
 													<div className="flex items-center gap-3 text-xs text-[hsl(var(--color-muted-foreground))]">
 														<span className="flex items-center gap-1">
-															<i data-lucide="map-pin" className="h-3 w-3" />
+															<MapPinSmall />
 															{job.location}
 														</span>
 														<span className="font-semibold text-[hsl(var(--color-primary))]">
@@ -202,10 +208,7 @@ function UserProfile() {
 									className="flex items-center gap-3 p-3 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
 									reloadDocument
 								>
-									<i
-										data-lucide="user"
-										className="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
-									/>
+									<UserIcon />
 									<span className="text-sm font-medium">View Profile</span>
 								</Link>
 								<Link
@@ -213,10 +216,7 @@ function UserProfile() {
 									className="flex items-center gap-3 p-3 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
 									reloadDocument
 								>
-									<i
-										data-lucide="edit"
-										className="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
-									/>
+									<EditIcon />
 									<span className="text-sm font-medium">Edit Profile</span>
 								</Link>
 								<Link
@@ -224,10 +224,7 @@ function UserProfile() {
 									className="flex items-center gap-3 p-3 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
 									reloadDocument
 								>
-									<i
-										data-lucide="file-text"
-										className="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
-									/>
+									<FileTextIcon />
 									<span className="text-sm font-medium">My Applications</span>
 								</Link>
 							</div>
@@ -235,10 +232,7 @@ function UserProfile() {
 						{/* Tips */}
 						<div className="card p-6 bg-blue-50 border-blue-200">
 							<div className="flex items-start gap-3 mb-3">
-								<i
-									data-lucide="lightbulb"
-									className="h-5 w-5 text-blue-600 flex-shrink-0"
-								/>
+								<LightbulbIcon />
 								<div>
 									<h3 className="text-sm font-semibold text-blue-900 mb-1">
 										Pro Tip

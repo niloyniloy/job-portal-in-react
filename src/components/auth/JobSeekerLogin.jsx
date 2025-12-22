@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { checkJobSeekerLogin } from "./../../api/ApiCalls";
+import LogInIcon from "./../icons/LogInIcon";
+import UserLoginIcon from "./../icons/UserLoginIcon";
+import BuildingIcon from "./../icons/BuildingIcon";
+import SignInIcon from "./../icons/SignInIcon";
+
 
 function JobSeekerLogin() {
 
@@ -21,7 +26,22 @@ function JobSeekerLogin() {
                 {/* Page Title */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                        <i data-lucide="user-plus" className="h-8 w-8 text-primary" />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="h-8 w-8 text-primary"
+                        >
+                            <path d="m10 17 5-5-5-5" />
+                            <path d="M15 12H3" />
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                        </svg>
                     </div>
                     <h1 className="text-4xl font-bold tracking-tight mb-3">
                         Welcome Back
@@ -35,11 +55,11 @@ function JobSeekerLogin() {
                     <div className="card p-2 mb-8 inline-flex mx-auto w-full max-w-md">
                         <div className="grid grid-cols-2 gap-2 w-full">
                             <button className="btn btn-primary text-center">
-                                <i data-lucide="log-in" className="h-4 w-4 mr-2" />
+                                <UserLoginIcon />
                                 Job Seeker
                             </button>
-                            <Link to={`/company-login`} className="btn btn-ghost text-center" reloadDocument>
-                                <i data-lucide="building-2" className="h-4 w-4 mr-2" />
+                            <Link to={`/login/company`} className="btn btn-ghost text-center" reloadDocument>
+                                <BuildingIcon />
                                 Employer
                             </Link>
                         </div>
@@ -123,13 +143,6 @@ function JobSeekerLogin() {
                                     onChange={(e) => { setError(""); setPassword(e.target.value); }}
                                     required
                                 />
-                                <button
-                                    type="button"
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-
-                                >
-                                    <i data-lucide="eye" className="h-4 w-4"></i>
-                                </button>
                             </div>
                         </div>
 
@@ -139,7 +152,7 @@ function JobSeekerLogin() {
                             className="btn btn-primary w-full text-base h-11"
                             onClick={() => handleLogin()}
                         >
-                            <i data-lucide="log-in" className="h-4 w-4 mr-2"></i>
+                            <SignInIcon />
                             Sign In
                         </button>
                     </form>
@@ -164,7 +177,7 @@ function JobSeekerLogin() {
                     <div className="mt-8 text-center text-sm text-muted-foreground">
                         Don't have an account?
                         <Link
-                            to={`/jobseeker-register`}
+                            to={`/register/user`}
                             className="text-primary hover:underline font-medium"
                             reloadDocument
                         >Sign up as Job Seeker

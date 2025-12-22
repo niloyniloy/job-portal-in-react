@@ -1,8 +1,12 @@
 
 import { useParams, Link } from "react-router-dom";
 import { getMyApplicationsWithFilters, renderProfileImage, formatSalary, withdrawJobApplication, formatDate } from "./../../api/ApiCalls";
-import { useState, useEffect, useRef } from "react";
-
+import { useState, useEffect, useRef } from "react";  
+import ChevronRightIcon from './../icons/ChevronRightIcon' 
+import RotateCcwIcon from './../icons/RotateCcwIcon'
+import ChevronDownIcon from './../icons/ChevronDownIcon'  
+import EyeIcon from './../icons/EyeIcon'
+import ClockIcon from './../icons/ClockIcon'
 
 function MyApplications() {
 
@@ -136,7 +140,7 @@ function MyApplications() {
 						>
 							Dashboard
 						</a>
-						<i data-lucide="chevron-right" className="h-4 w-4" />
+						<ChevronRightIcon />
 						<span className="text-[hsl(var(--color-foreground))]">Applied Jobs</span>
 					</div>
 					<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -201,7 +205,7 @@ function MyApplications() {
 								</div>
 							</div>
 							<button onClick={() => resetFilter()} className="btn btn-outline w-full">
-								<i data-lucide="rotate-ccw" className="h-4 w-4 mr-2" />
+								<RotateCcwIcon />
 								Reset Filters
 							</button>
 						</div>
@@ -220,7 +224,7 @@ function MyApplications() {
 										onClick={toggleDropdowns}
 									>
 										<span>Newest First</span>
-										<i data-lucide="chevron-down" className="h-4 w-4 ml-2" />
+										<ChevronDownIcon />
 									</button>
 									<div
 										ref={dropdownRef}
@@ -245,7 +249,7 @@ function MyApplications() {
 									<div className="flex-shrink-0">
 										{job.job?.company?.logoUrl ? (
 											<div className="h-16 w-16 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center flex-shrink-0">
-												<img src={renderProfileImage(job.job?.company?.logoUrl)} alt={job?.company?.name} className="h-20 w-20" />
+												<img src={renderProfileImage(job.job?.company?.logoUrl)} alt={job?.company?.name} className="h-16 w-16 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center" />
 											</div>
 										) : (
 											<div className="h-16 w-16 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center">
@@ -359,7 +363,7 @@ function MyApplications() {
 										<div className="flex flex-wrap items-center justify-between gap-3">
 											<div className="flex items-center gap-4 text-xs text-[hsl(var(--color-muted-foreground))]">
 												<span className="flex items-center gap-1">
-													<i data-lucide="clock" className="h-3 w-3" />
+													<ClockIcon />
 													Applied on {formatDate(job.createdAt)}
 												</span>
 											</div>
@@ -369,7 +373,7 @@ function MyApplications() {
 													className="btn btn-outline text-sm h-9"
 													reloadDocument
 												>
-													<i data-lucide="eye" className="h-4 w-4 mr-2" />
+													<EyeIcon />
 													View Job
 												</Link>
 												<button onClick={() => withdrawApplicaton(job.id)} className="btn btn-outline text-sm h-9">

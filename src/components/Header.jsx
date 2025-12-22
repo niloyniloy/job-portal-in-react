@@ -123,10 +123,10 @@ function Header() {
 				<div className="flex items-center gap-4">
 					{(!isAuthenticated) && (
 						<>
-							<Link to={`/jobseeker-login`} className="btn btn-ghost text-sm" reloadDocument>
+							<Link to={`/login/user`} className="btn btn-ghost text-sm" reloadDocument>
 								Sign In
 							</Link>
-							<Link to={`/company-login`} className="btn btn-primary text-sm" reloadDocument>
+							<Link to={`/login/company`} className="btn btn-primary text-sm" reloadDocument>
 								Post a Job
 							</Link>
 						</>

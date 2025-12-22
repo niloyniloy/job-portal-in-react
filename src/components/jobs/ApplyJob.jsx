@@ -1,3 +1,6 @@
+import XIcon from './../icons/XIcon' 
+import SendIcon from './../icons/SendIcon'
+
 function ApplyJob({ setCoverMessage, errorMsg, coverMessage, setRenderModal, submitApplyJob, setErrorMsg  }) {
 
 	const MAX_CHARS = 500;
@@ -20,7 +23,7 @@ function ApplyJob({ setCoverMessage, errorMsg, coverMessage, setRenderModal, sub
 							<p style={{ color: 'red' }}>{errorMsg}</p>
 						</div>
 						<button onClick={() => setRenderModal(false)} className="btn-ghost p-2">
-							<i data-lucide="x" className="h-5 w-5" />
+							<XIcon />
 						</button>
 					</div>
 
@@ -58,7 +61,7 @@ function ApplyJob({ setCoverMessage, errorMsg, coverMessage, setRenderModal, sub
 							className="btn btn-primary flex-1"
 
 						>
-							<i data-lucide="send" className="h-4 w-4 mr-2" />
+							<SendIcon />
 							Submit Application
 						</button>
 					</div>

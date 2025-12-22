@@ -383,7 +383,7 @@ function JobApplicants() {
 							{applicants.currentPage < applicants.totalPages && (
 								<div className="mt-6 text-center">
 									<button onClick={handleLoadMore} className="btn btn-outline">
-										<i data-lucide="loader" className="h-4 w-4 mr-2" />
+										
 										Load More Applicants
 									</button>
 								</div>
