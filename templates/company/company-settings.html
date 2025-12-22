@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Company Settings - LWS Job Portal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <style type="text/tailwindcss">
+            @layer base {
+                :root {
+                    --color-border: 214.3 31.8% 91.4%;
+                    --color-input: 214.3 31.8% 91.4%;
+                    --color-ring: 222.2 84% 4.9%;
+                    --color-background: 0 0% 100%;
+                    --color-foreground: 222.2 84% 4.9%;
+                    --color-primary: 222.2 47.4% 11.2%;
+                    --color-primary-foreground: 210 40% 98%;
+                    --color-secondary: 210 40% 96.1%;
+                    --color-secondary-foreground: 222.2 47.4% 11.2%;
+                    --color-muted: 210 40% 96.1%;
+                    --color-muted-foreground: 215.4 16.3% 46.9%;
+                    --color-accent: 210 40% 96.1%;
+                    --color-accent-foreground: 222.2 47.4% 11.2%;
+                    --color-card: 0 0% 100%;
+                    --color-card-foreground: 222.2 84% 4.9%;
+                }
+            }
+
+            @layer components {
+                .btn {
+                    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors;
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:pointer-events-none disabled:opacity-50;
+                }
+
+                .btn-primary {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/90 h-10 px-4 py-2;
+                }
+
+                .btn-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80 h-10 px-4 py-2;
+                }
+
+                .btn-outline {
+                    @apply border border-[hsl(var(--color-input))] bg-[hsl(var(--color-background))];
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .btn-ghost {
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .card {
+                    @apply rounded-lg border border-[hsl(var(--color-border))];
+                    @apply bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))] shadow-sm;
+                }
+
+                .input {
+                    @apply flex h-10 w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .textarea {
+                    @apply flex min-h-[80px] w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .label {
+                    @apply text-sm font-medium leading-none;
+                    @apply peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-background text-foreground antialiased">
+        <!-- Header/Navigation -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-[hsl(var(--color-border))] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        >
+            <div
+                class="container mx-auto flex h-16 items-center justify-between px-4"
+            >
+                <div class="flex items-center gap-8">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <i
+                            data-lucide="briefcase"
+                            class="h-8 w-8 text-[hsl(var(--color-primary))]"
+                        ></i>
+                        <span class="text-xl font-bold">LWS Job Portal</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a
+                            href="company-dashboard.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Dashboard</a
+                        >
+                        <a
+                            href="manage-jobs.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Manage Jobs</a
+                        >
+                        <a
+                            href="applicants.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Applicants</a
+                        >
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="create-job.html" class="btn btn-primary">
+                        <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                        Post Job
+                    </a>
+
+                    <div class="flex items-center gap-2">
+                        <div
+                            class="h-8 w-8 rounded-full bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="building-2"
+                                class="h-4 w-4 text-[hsl(var(--color-primary))]"
+                            ></i>
+                        </div>
+                        <span class="text-sm font-medium hidden md:inline"
+                            >TechCorp Solutions</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div
+                    class="flex items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))] mb-2"
+                >
+                    <a
+                        href="company-dashboard.html"
+                        class="hover:text-[hsl(var(--color-primary))]"
+                        >Dashboard</a
+                    >
+                    <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                    <span class="text-[hsl(var(--color-foreground))]"
+                        >Company Settings</span
+                    >
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold mb-2">Company Settings</h1>
+                    <p class="text-[hsl(var(--color-muted-foreground))]">
+                        Manage your company profile and preferences
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Settings Navigation -->
+                <aside class="lg:col-span-1">
+                    <div class="card p-4">
+                        <nav class="space-y-1">
+                            <a
+                                href="#company-info"
+                                class="flex items-center gap-3 px-3 py-2 text-sm font-medium bg-[hsl(var(--color-accent))] rounded-md"
+                            >
+                                <i data-lucide="building-2" class="h-4 w-4"></i>
+                                Company Info
+                            </a>
+                            <a
+                                href="#contact"
+                                class="flex items-center gap-3 px-3 py-2 text-sm text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-foreground))] rounded-md transition-colors"
+                            >
+                                <i data-lucide="phone" class="h-4 w-4"></i>
+                                Contact Details
+                            </a>
+                            <a
+                                href="#social"
+                                class="flex items-center gap-3 px-3 py-2 text-sm text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-foreground))] rounded-md transition-colors"
+                            >
+                                <i data-lucide="share-2" class="h-4 w-4"></i>
+                                Social Media
+                            </a>
+                            <a
+                                href="#preferences"
+                                class="flex items-center gap-3 px-3 py-2 text-sm text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-foreground))] rounded-md transition-colors"
+                            >
+                                <i data-lucide="settings" class="h-4 w-4"></i>
+                                Preferences
+                            </a>
+                            <a
+                                href="#billing"
+                                class="flex items-center gap-3 px-3 py-2 text-sm text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-foreground))] rounded-md transition-colors"
+                            >
+                                <i
+                                    data-lucide="credit-card"
+                                    class="h-4 w-4"
+                                ></i>
+                                Billing
+                            </a>
+                            <a
+                                href="#account"
+                                class="flex items-center gap-3 px-3 py-2 text-sm text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-foreground))] rounded-md transition-colors"
+                            >
+                                <i data-lucide="shield" class="h-4 w-4"></i>
+                                Account Security
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Quick Info Card -->
+                    <div class="card p-6 mt-6">
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="h-20 w-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4"
+                            >
+                                <i
+                                    data-lucide="building-2"
+                                    class="h-10 w-10 text-white"
+                                ></i>
+                            </div>
+                            <h3 class="font-semibold mb-1">
+                                TechCorp Solutions
+                            </h3>
+                            <p
+                                class="text-xs text-[hsl(var(--color-muted-foreground))] mb-4"
+                            >
+                                Premium Member
+                            </p>
+                            <div class="w-full space-y-2 text-xs">
+                                <div class="flex justify-between">
+                                    <span
+                                        class="text-[hsl(var(--color-muted-foreground))]"
+                                        >Active Jobs</span
+                                    >
+                                    <span class="font-medium">24</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span
+                                        class="text-[hsl(var(--color-muted-foreground))]"
+                                        >Total Applicants</span
+                                    >
+                                    <span class="font-medium">156</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span
+                                        class="text-[hsl(var(--color-muted-foreground))]"
+                                        >Member Since</span
+                                    >
+                                    <span class="font-medium">Jan 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Settings Content -->
+                <div class="lg:col-span-3 space-y-6">
+                    <!-- Company Logo and Name -->
+                    <div id="company-info" class="card p-6">
+                        <h2 class="text-xl font-semibold mb-6">
+                            Company Information
+                        </h2>
+
+                        <!-- Logo Upload -->
+                        <div class="mb-6">
+                            <label class="label mb-2">Company Logo</label>
+                            <div class="flex items-start gap-6">
+                                <div class="relative">
+                                    <div
+                                        class="h-24 w-24 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center"
+                                    >
+                                        <i
+                                            data-lucide="building-2"
+                                            class="h-12 w-12 text-white"
+                                        ></i>
+                                    </div>
+                                    <button
+                                        class="absolute -bottom-2 -right-2 h-8 w-8 rounded-full bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))] flex items-center justify-center shadow-lg hover:bg-[hsl(var(--color-primary))]/90"
+                                    >
+                                        <i
+                                            data-lucide="camera"
+                                            class="h-4 w-4"
+                                        ></i>
+                                    </button>
+                                </div>
+                                <div class="flex-1">
+                                    <input
+                                        type="file"
+                                        id="logoUpload"
+                                        class="hidden"
+                                        accept="image/*"
+                                    />
+                                    <label
+                                        for="logoUpload"
+                                        class="btn btn-outline cursor-pointer"
+                                    >
+                                        <i
+                                            data-lucide="upload"
+                                            class="h-4 w-4 mr-2"
+                                        ></i>
+                                        Upload Logo
+                                    </label>
+                                    <p
+                                        class="text-xs text-[hsl(var(--color-muted-foreground))] mt-2"
+                                    >
+                                        Recommended size: 200x200px. Max file
+                                        size: 2MB. Supported formats: JPG, PNG,
+                                        SVG
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Company Name -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="label mb-2" for="companyName"
+                                    >Company Name
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <input
+                                    type="text"
+                                    id="companyName"
+                                    class="input"
+                                    value="TechCorp Solutions"
+                                    placeholder="Enter company name"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label class="label mb-2" for="industry"
+                                    >Industry
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <input
+                                    type="text"
+                                    id="industry"
+                                    class="input"
+                                    value="Information Technology"
+                                    placeholder="e.g., Technology, Healthcare"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Company Size and Type -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="label mb-2" for="companySize"
+                                    >Company Size</label
+                                >
+                                <select id="companySize" class="input">
+                                    <option value="">
+                                        Select company size
+                                    </option>
+                                    <option value="1-10">1-10 employees</option>
+                                    <option value="50">11-50 employees</option>
+                                    <option value="200">
+                                        51-200 employees
+                                    </option>
+                                    <option value="500" selected>
+                                        201-500 employees
+                                    </option>
+                                    <option value="1000">
+                                        501-1000 employees
+                                    </option>
+                                    <option value="5000">
+                                        1001-5000 employees
+                                    </option>
+                                    <option value="10000">
+                                        5001-10000 employees
+                                    </option>
+                                    <option value="10001+">
+                                        10000+ employees
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label mb-2" for="companyType"
+                                    >Company Type</label
+                                >
+                                <select id="companyType" class="input">
+                                    <option value="">
+                                        Select company type
+                                    </option>
+                                    <option value="startup">Startup</option>
+                                    <option value="private" selected>
+                                        Private Company
+                                    </option>
+                                    <option value="public">
+                                        Public Company
+                                    </option>
+                                    <option value="non-profit">
+                                        Non-Profit
+                                    </option>
+                                    <option value="government">
+                                        Government Agency
+                                    </option>
+                                    <option value="educational">
+                                        Educational Institution
+                                    </option>
+                                    <option value="self-employed">
+                                        Self-Employed
+                                    </option>
+                                    <option value="partnership">
+                                        Partnership
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Website and Founded Year -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="label mb-2" for="website"
+                                    >Website
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <input
+                                    type="url"
+                                    id="website"
+                                    class="input"
+                                    value="https://techcorp.example.com"
+                                    placeholder="https://yourcompany.com"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label class="label mb-2" for="founded"
+                                    >Founded Year</label
+                                >
+                                <input
+                                    type="text"
+                                    id="founded"
+                                    class="input"
+                                    value="2015"
+                                    placeholder="e.g., 2020"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- About Company -->
+                        <div class="mb-4">
+                            <label class="label mb-2" for="about"
+                                >About Company
+                                <span class="text-red-500">*</span></label
+                            >
+                            <textarea
+                                id="about"
+                                class="textarea"
+                                rows="6"
+                                required
+                                placeholder="Tell us about your company..."
+                            >
+TechCorp Solutions is a leading technology company specializing in innovative software solutions. We are committed to delivering cutting-edge products and services that help businesses transform digitally. Our team of experienced professionals works on challenging projects across various domains including cloud computing, AI/ML, and mobile applications.
+
+We pride ourselves on fostering a culture of innovation, collaboration, and continuous learning. Join us to be part of a dynamic team that's shaping the future of technology.</textarea
+                            >
+                        </div>
+
+                        <!-- Headquarters Location -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="label mb-2" for="city"
+                                    >City</label
+                                >
+                                <input
+                                    type="text"
+                                    id="city"
+                                    class="input"
+                                    value="San Francisco"
+                                    placeholder="City"
+                                />
+                            </div>
+                            <div>
+                                <label class="label mb-2" for="state"
+                                    >State/Province</label
+                                >
+                                <input
+                                    type="text"
+                                    id="state"
+                                    class="input"
+                                    value="California"
+                                    placeholder="State"
+                                />
+                            </div>
+                            <div>
+                                <label class="label mb-2" for="country"
+                                    >Country</label
+                                >
+                                <input
+                                    type="text"
+                                    id="country"
+                                    class="input"
+                                    value="United States"
+                                    placeholder="Country"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div id="contact" class="card p-6">
+                        <h2 class="text-xl font-semibold mb-6">
+                            Contact Information
+                        </h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="label mb-2" for="phone"
+                                    >Phone Number
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    class="input"
+                                    value="+1 (555) 123-4567"
+                                    placeholder="+1 (555) 000-0000"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="label mb-2" for="hrEmail"
+                                    >HR Department Email</label
+                                >
+                                <input
+                                    type="email"
+                                    id="hrEmail"
+                                    class="input"
+                                    value="hr@techcorp.com"
+                                    placeholder="hr@example.com"
+                                />
+                            </div>
+                            <div>
+                                <label class="label mb-2" for="supportEmail"
+                                    >Information Email</label
+                                >
+                                <input
+                                    type="email"
+                                    id="supportEmail"
+                                    class="input"
+                                    value="support@techcorp.com"
+                                    placeholder="support@example.com"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div id="social" class="card p-6">
+                        <h2 class="text-xl font-semibold mb-6">
+                            Social Media Links
+                        </h2>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="label mb-2" for="linkedin"
+                                    >LinkedIn Profile</label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="linkedin"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--color-muted-foreground))]"
+                                    ></i>
+                                    <input
+                                        type="url"
+                                        id="linkedin"
+                                        class="input pl-10"
+                                        value="https://linkedin.com/company/techcorp"
+                                        placeholder="https://linkedin.com/company/yourcompany"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label mb-2" for="twitter"
+                                    >Twitter/X Profile</label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="twitter"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--color-muted-foreground))]"
+                                    ></i>
+                                    <input
+                                        type="url"
+                                        id="twitter"
+                                        class="input pl-10"
+                                        value="https://twitter.com/techcorp"
+                                        placeholder="https://twitter.com/yourcompany"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label mb-2" for="facebook"
+                                    >Facebook Page</label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="facebook"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--color-muted-foreground))]"
+                                    ></i>
+                                    <input
+                                        type="url"
+                                        id="facebook"
+                                        class="input pl-10"
+                                        value="https://facebook.com/techcorp"
+                                        placeholder="https://facebook.com/yourcompany"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label mb-2" for="instagram"
+                                    >Instagram Profile</label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="instagram"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--color-muted-foreground))]"
+                                    ></i>
+                                    <input
+                                        type="url"
+                                        id="instagram"
+                                        class="input pl-10"
+                                        value="https://instagram.com/techcorp"
+                                        placeholder="https://instagram.com/yourcompany"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="label mb-2" for="github"
+                                    >GitHub Organization</label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="github"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--color-muted-foreground))]"
+                                    ></i>
+                                    <input
+                                        type="url"
+                                        id="github"
+                                        class="input pl-10"
+                                        value="https://github.com/techcorp"
+                                        placeholder="https://github.com/yourcompany"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center justify-between gap-4 pt-4">
+                        <div class="flex gap-2">
+                            <button class="btn btn-primary">
+                                <i data-lucide="save" class="h-4 w-4 mr-2"></i>
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="border-t border-[hsl(var(--color-border))] bg-[hsl(var(--color-muted))]/30 mt-16"
+        >
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="font-semibold mb-4">LWS Job Portal</h3>
+                        <p
+                            class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            Your trusted platform for finding the perfect job or
+                            the perfect candidate.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Job Seekers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="../index.html"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Jobs</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Companies</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Career Advice</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Salary Guide</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Employers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Post a Job</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Candidates</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Hiring Resources</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Contact</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Privacy Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Terms of Service</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-[hsl(var(--color-border))] mt-8 pt-8 text-center text-sm text-[hsl(var(--color-muted-foreground))]"
+                >
+                    <p>&copy; 2025 LWS Job Portal. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

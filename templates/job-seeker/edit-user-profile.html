@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Profile - LWS Job Portal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <style type="text/tailwindcss">
+            @layer base {
+                :root {
+                    --color-border: 214.3 31.8% 91.4%;
+                    --color-input: 214.3 31.8% 91.4%;
+                    --color-ring: 222.2 84% 4.9%;
+                    --color-background: 0 0% 100%;
+                    --color-foreground: 222.2 84% 4.9%;
+                    --color-primary: 222.2 47.4% 11.2%;
+                    --color-primary-foreground: 210 40% 98%;
+                    --color-secondary: 210 40% 96.1%;
+                    --color-secondary-foreground: 222.2 47.4% 11.2%;
+                    --color-muted: 210 40% 96.1%;
+                    --color-muted-foreground: 215.4 16.3% 46.9%;
+                    --color-accent: 210 40% 96.1%;
+                    --color-accent-foreground: 222.2 47.4% 11.2%;
+                    --color-card: 0 0% 100%;
+                    --color-card-foreground: 222.2 84% 4.9%;
+                }
+            }
+
+            @layer components {
+                .btn {
+                    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors;
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:pointer-events-none disabled:opacity-50;
+                }
+
+                .btn-primary {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/90 h-10 px-4 py-2;
+                }
+
+                .btn-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80 h-10 px-4 py-2;
+                }
+
+                .btn-outline {
+                    @apply border border-[hsl(var(--color-input))] bg-[hsl(var(--color-background))];
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .btn-ghost {
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .card {
+                    @apply rounded-lg border border-[hsl(var(--color-border))];
+                    @apply bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))] shadow-sm;
+                }
+
+                .input {
+                    @apply flex h-10 w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .textarea {
+                    @apply flex min-h-[80px] w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .label {
+                    @apply text-sm font-medium leading-none;
+                    @apply peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+                }
+
+                .badge {
+                    @apply inline-flex items-center rounded-full border border-transparent;
+                    @apply px-2.5 py-0.5 text-xs font-semibold transition-colors;
+                    @apply focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))];
+                }
+
+                .badge-default {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/80;
+                }
+
+                .badge-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80;
+                }
+
+                .badge-outline {
+                    @apply border-[hsl(var(--color-border))] text-[hsl(var(--color-foreground))];
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-background text-foreground antialiased">
+        <!-- Header/Navigation -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-[hsl(var(--color-border))] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        >
+            <div
+                class="container mx-auto flex h-16 items-center justify-between px-4"
+            >
+                <div class="flex items-center gap-8">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <i
+                            data-lucide="briefcase"
+                            class="h-8 w-8 text-[hsl(var(--color-primary))]"
+                        ></i>
+                        <span class="text-xl font-bold">LWS Job Portal</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a
+                            href="../index.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Jobs</a
+                        >
+                        <a
+                            href="user-dashboard.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Dashboard</a
+                        >
+                        <a
+                            href="#"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >My Applications</a
+                        >
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <div
+                            class="h-8 w-8 rounded-full bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="user"
+                                class="h-4 w-4 text-[hsl(var(--color-primary))]"
+                            ></i>
+                        </div>
+                        <span class="text-sm font-medium hidden md:inline"
+                            >John Doe</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8 max-w-4xl">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div
+                    class="flex items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))] mb-2"
+                >
+                    <a
+                        href="user-dashboard.html"
+                        class="hover:text-[hsl(var(--color-primary))]"
+                        >Dashboard</a
+                    >
+                    <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                    <a
+                        href="user-profile.html"
+                        class="hover:text-[hsl(var(--color-primary))]"
+                        >My Profile</a
+                    >
+                    <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                    <span class="text-[hsl(var(--color-foreground))]"
+                        >Edit Profile</span
+                    >
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold mb-2">Edit Profile</h1>
+                        <p class="text-[hsl(var(--color-muted-foreground))]">
+                            Update your personal information and preferences
+                        </p>
+                    </div>
+                    <a href="user-profile.html" class="btn btn-outline">
+                        <i data-lucide="x" class="h-4 w-4 mr-2"></i>
+                        Cancel
+                    </a>
+                </div>
+            </div>
+
+            <!-- Edit Form -->
+            <form class="space-y-6">
+                <!-- Profile Photo Section -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-6">Profile Photo</h2>
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="relative flex-shrink-0">
+                            <div
+                                class="h-32 w-32 rounded-full bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                            >
+                                <i
+                                    data-lucide="user"
+                                    class="h-16 w-16 text-[hsl(var(--color-primary))]"
+                                ></i>
+                            </div>
+                            <div
+                                class="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-[hsl(var(--color-primary))] flex items-center justify-center border-4 border-white cursor-pointer hover:bg-[hsl(var(--color-primary))]/90 transition-colors"
+                            >
+                                <i
+                                    data-lucide="camera"
+                                    class="h-5 w-5 text-white"
+                                ></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-medium mb-2">
+                                Upload Profile Picture
+                            </h3>
+                            <p
+                                class="text-sm text-[hsl(var(--color-muted-foreground))] mb-4"
+                            >
+                                JPG, PNG or GIF. Max size of 5MB.
+                            </p>
+                            <div class="flex gap-2">
+                                <label class="btn btn-primary cursor-pointer">
+                                    <i
+                                        data-lucide="upload"
+                                        class="h-4 w-4 mr-2"
+                                    ></i>
+                                    Upload Photo
+                                    <input
+                                        type="file"
+                                        class="hidden"
+                                        accept="image/*"
+                                    />
+                                </label>
+                                <!-- Remove should be implemented on the local state until the user saves the changes. -->
+                                <button type="button" class="btn btn-outline">
+                                    <i
+                                        data-lucide="trash-2"
+                                        class="h-4 w-4 mr-2"
+                                    ></i>
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Information -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-6">
+                        Basic Information
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="label block mb-2"
+                                >Name *</label
+                            >
+                            <input
+                                type="text"
+                                id="name"
+                                class="input"
+                                placeholder="Enter last name"
+                                value="Doe"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="email" class="label block mb-2"
+                                >Email Address *</label
+                            >
+                            <input
+                                type="email"
+                                id="email"
+                                class="input"
+                                placeholder="Enter email"
+                                value="john.doe@example.com"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="phone" class="label block mb-2"
+                                >Phone Number *</label
+                            >
+                            <input
+                                type="tel"
+                                id="phone"
+                                class="input"
+                                placeholder="Enter phone number"
+                                value="+1 (415) 555-0123"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="title" class="label block mb-2"
+                                >Professional Title</label
+                            >
+                            <input
+                                type="text"
+                                id="title"
+                                class="input"
+                                placeholder="e.g. Full Stack Developer"
+                                value="Full Stack Developer"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-6">Location</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="city" class="label block mb-2"
+                                >City *</label
+                            >
+                            <input
+                                type="text"
+                                id="city"
+                                class="input"
+                                placeholder="Enter city"
+                                value="San Francisco"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="state" class="label block mb-2"
+                                >State/Province *</label
+                            >
+                            <input
+                                type="text"
+                                id="state"
+                                class="input"
+                                placeholder="Enter state"
+                                value="California"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="country" class="label block mb-2"
+                                >Country *</label
+                            >
+                            <input
+                                type="text"
+                                id="country"
+                                class="input"
+                                placeholder="Enter country"
+                                value="United States"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label for="zipcode" class="label block mb-2"
+                                >Zip Code</label
+                            >
+                            <input
+                                type="text"
+                                id="zipcode"
+                                class="input"
+                                placeholder="Enter zip code"
+                                value="94102"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-6">About</h2>
+                    <div>
+                        <label for="bio" class="label block mb-2"
+                            >Professional Summary</label
+                        >
+                        <textarea
+                            id="bio"
+                            class="textarea"
+                            rows="5"
+                            placeholder="Write a brief summary about yourself, your experience, and what you're looking for..."
+                        >
+Experienced Full Stack Developer with 5+ years of expertise in building scalable web applications. Passionate about creating clean, efficient code and delivering exceptional user experiences. Strong background in React, Node.js, and cloud technologies.</textarea
+                        >
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-6">Skills</h2>
+                    <div class="mb-4">
+                        <label for="skillInput" class="label block mb-2"
+                            >Add Skills</label
+                        >
+                        <div class="flex gap-2">
+                            <input
+                                type="text"
+                                id="skillInput"
+                                class="input flex-1"
+                                placeholder="Type a skill and press Enter"
+                            />
+                            <button type="button" class="btn btn-primary">
+                                <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                                Add
+                            </button>
+                        </div>
+                        <p
+                            class="text-xs text-[hsl(var(--color-muted-foreground))] mt-2"
+                        >
+                            Add skills relevant to your profession. Press Enter
+                            or click Add to add each skill.
+                        </p>
+                    </div>
+                    <div>
+                        <label class="label block mb-3">Current Skills</label>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                JavaScript
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                TypeScript
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                React
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                Node.js
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                Express
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                MongoDB
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                PostgreSQL
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                Git
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                Docker
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                            <span
+                                class="badge badge-secondary inline-flex items-center gap-1"
+                            >
+                                AWS
+                                <button
+                                    type="button"
+                                    class="hover:text-red-600"
+                                >
+                                    <i data-lucide="x" class="h-3 w-3"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold">Work Experience</h2>
+                        <button type="button" class="btn btn-outline">
+                            <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                            Add Experience
+                        </button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Experience Entry 1 -->
+                        <div
+                            class="p-4 border border-[hsl(var(--color-border))] rounded-lg"
+                        >
+                            <div class="flex items-start justify-between mb-4">
+                                <h3 class="font-medium">
+                                    Senior Full Stack Developer
+                                </h3>
+                                <!-- Remove should be implemented on the local state until the user saves the changes. -->
+                                <button
+                                    type="button"
+                                    class="btn-ghost p-1 text-red-600 hover:bg-red-50"
+                                >
+                                    <i
+                                        data-lucide="trash-2"
+                                        class="h-4 w-4"
+                                    ></i>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="label block mb-2"
+                                        >Company</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="input"
+                                        value="TechCorp Solutions"
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label block mb-2"
+                                        >Employment Type</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="input"
+                                        value="Full-time"
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label block mb-2"
+                                        >Start Date</label
+                                    >
+                                    <input
+                                        type="month"
+                                        class="input"
+                                        value="2022-01"
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label block mb-2"
+                                        >End Date</label
+                                    >
+                                    <input
+                                        type="month"
+                                        class="input"
+                                        placeholder="Present"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Entry 2 -->
+                        <div
+                            class="p-4 border border-[hsl(var(--color-border))] rounded-lg"
+                        >
+                            <div class="flex items-start justify-between mb-4">
+                                <h3 class="font-medium">
+                                    Full Stack Developer
+                                </h3>
+                                <!-- Remove should be implemented on the local state until the user saves the changes. -->
+                                <button
+                                    type="button"
+                                    class="btn-ghost p-1 text-red-600 hover:bg-red-50"
+                                >
+                                    <i
+                                        data-lucide="trash-2"
+                                        class="h-4 w-4"
+                                    ></i>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="label block mb-2"
+                                        >Company</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="input"
+                                        value="WebTech Industries"
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label block mb-2"
+                                        >Employment Type</label
+                                    >
+                                    <select class="input">
+                                        <option value="">Select type</option>
+                                        <option value="full-time" selected>
+                                            Full-time
+                                        </option>
+                                        <option value="part-time">
+                                            Part-time
+                                        </option>
+                                        <option value="contract">
+                                            Contract
+                                        </option>
+                                        <option value="freelance">
+                                            Freelance
+                                        </option>
+                                        <option value="internship">
+                                            Internship
+                                        </option>
+                                        <option value="temporary">
+                                            Temporary
+                                        </option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="label block mb-2"
+                                        >Start Date</label
+                                    >
+                                    <input
+                                        type="month"
+                                        class="input"
+                                        value="2020-06"
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label block mb-2"
+                                        >End Date</label
+                                    >
+                                    <input
+                                        type="month"
+                                        class="input"
+                                        value="2021-12"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold">Education</h2>
+                        <button type="button" class="btn btn-outline">
+                            <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                            Add Education
+                        </button>
+                    </div>
+
+                    <div
+                        class="p-4 border border-[hsl(var(--color-border))] rounded-lg"
+                    >
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="font-medium">
+                                Bachelor of Science in Computer Science
+                            </h3>
+
+                            <!-- Remove should be implemented on the local state until the user saves the changes. -->
+                            <button
+                                type="button"
+                                class="btn-ghost p-1 text-red-600 hover:bg-red-50"
+                            >
+                                <i data-lucide="trash-2" class="h-4 w-4"></i>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="label block mb-2"
+                                    >Institution</label
+                                >
+                                <input
+                                    type="text"
+                                    class="input"
+                                    value="Stanford University"
+                                />
+                            </div>
+                            <div>
+                                <label class="label block mb-2">Degree</label>
+                                <input
+                                    type="text"
+                                    class="input"
+                                    value="Bachelor of Science"
+                                />
+                            </div>
+                            <div>
+                                <label class="label block mb-2"
+                                    >Start Year</label
+                                >
+                                <input
+                                    type="number"
+                                    class="input"
+                                    value="2016"
+                                />
+                            </div>
+                            <div>
+                                <label class="label block mb-2">End Year</label>
+                                <input
+                                    type="number"
+                                    class="input"
+                                    value="2020"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resume Upload -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-6">Resume/CV</h2>
+                    <div class="space-y-4">
+                        <!-- Current Resume -->
+                        <div
+                            class="p-4 bg-[hsl(var(--color-secondary))] rounded-lg"
+                        >
+                            <div class="flex items-center gap-3 mb-3">
+                                <div
+                                    class="h-12 w-12 rounded-lg bg-white flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        data-lucide="file-text"
+                                        class="h-6 w-6 text-[hsl(var(--color-primary))]"
+                                    ></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-medium text-sm truncate">
+                                        John_Doe_Resume.pdf
+                                    </p>
+                                    <p
+                                        class="text-xs text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        Updated Nov 28, 2025 • 245 KB
+                                    </p>
+                                </div>
+                                <!-- Remove should be implemented on the local state until the user saves the changes. -->
+                                <button
+                                    type="button"
+                                    class="btn-ghost p-2 text-red-600 hover:bg-red-50"
+                                >
+                                    <i
+                                        data-lucide="trash-2"
+                                        class="h-4 w-4"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Upload New Resume -->
+                        <div>
+                            <label
+                                class="btn btn-outline w-full cursor-pointer"
+                            >
+                                <i
+                                    data-lucide="upload"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                Upload New Resume
+                                <input
+                                    type="file"
+                                    class="hidden"
+                                    accept=".pdf,.doc,.docx"
+                                />
+                            </label>
+                            <p
+                                class="text-xs text-[hsl(var(--color-muted-foreground))] mt-2"
+                            >
+                                Supported formats: PDF, DOC, DOCX. Max size: 5MB
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold mb-6">Social Profiles</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="linkedin" class="label block mb-2">
+                                <i
+                                    data-lucide="linkedin"
+                                    class="h-4 w-4 inline mr-1"
+                                ></i>
+                                LinkedIn
+                            </label>
+                            <input
+                                type="url"
+                                id="linkedin"
+                                class="input"
+                                placeholder="https://linkedin.com/in/username"
+                                value="https://linkedin.com/in/johndoe"
+                            />
+                        </div>
+                        <div>
+                            <label for="github" class="label block mb-2">
+                                <i
+                                    data-lucide="github"
+                                    class="h-4 w-4 inline mr-1"
+                                ></i>
+                                GitHub
+                            </label>
+                            <input
+                                type="url"
+                                id="github"
+                                class="input"
+                                placeholder="https://github.com/username"
+                                value="https://github.com/johndoe"
+                            />
+                        </div>
+                        <div>
+                            <label for="portfolio" class="label block mb-2">
+                                <i
+                                    data-lucide="globe"
+                                    class="h-4 w-4 inline mr-1"
+                                ></i>
+                                Portfolio Website
+                            </label>
+                            <input
+                                type="url"
+                                id="portfolio"
+                                class="input"
+                                placeholder="https://yourwebsite.com"
+                                value="https://johndoe.dev"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="card p-6">
+                    <div class="flex flex-col sm:flex-row gap-3 justify-end">
+                        <a href="user-profile.html" class="btn btn-outline">
+                            <i data-lucide="x" class="h-4 w-4 mr-2"></i>
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i data-lucide="save" class="h-4 w-4 mr-2"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="border-t border-[hsl(var(--color-border))] bg-[hsl(var(--color-muted))]/30 mt-16"
+        >
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="font-semibold mb-4">LWS Job Portal</h3>
+                        <p
+                            class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            Your trusted platform for finding the perfect job or
+                            the perfect candidate.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Job Seekers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="../index.html"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Jobs</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Companies</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Career Advice</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Salary Guide</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Employers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Post a Job</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Candidates</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Hiring Resources</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Contact</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Privacy Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Terms of Service</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-[hsl(var(--color-border))] mt-8 pt-8 text-center text-sm text-[hsl(var(--color-muted-foreground))]"
+                >
+                    <p>&copy; 2025 LWS Job Portal. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

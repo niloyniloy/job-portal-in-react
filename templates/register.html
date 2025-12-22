@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Register - LWS Job Portal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <style type="text/tailwindcss">
+            @layer base {
+                :root {
+                    --color-border: 214.3 31.8% 91.4%;
+                    --color-input: 214.3 31.8% 91.4%;
+                    --color-ring: 222.2 84% 4.9%;
+                    --color-background: 0 0% 100%;
+                    --color-foreground: 222.2 84% 4.9%;
+                    --color-primary: 222.2 47.4% 11.2%;
+                    --color-primary-foreground: 210 40% 98%;
+                    --color-secondary: 210 40% 96.1%;
+                    --color-secondary-foreground: 222.2 47.4% 11.2%;
+                    --color-muted: 210 40% 96.1%;
+                    --color-muted-foreground: 215.4 16.3% 46.9%;
+                    --color-accent: 210 40% 96.1%;
+                    --color-accent-foreground: 222.2 47.4% 11.2%;
+                    --color-card: 0 0% 100%;
+                    --color-card-foreground: 222.2 84% 4.9%;
+                }
+            }
+
+            @layer components {
+                .btn {
+                    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors;
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:pointer-events-none disabled:opacity-50;
+                }
+
+                .btn-primary {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/90 h-10 px-4 py-2;
+                }
+
+                .btn-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80 h-10 px-4 py-2;
+                }
+
+                .btn-outline {
+                    @apply border border-[hsl(var(--color-input))] bg-[hsl(var(--color-background))];
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .btn-ghost {
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .card {
+                    @apply rounded-lg border border-[hsl(var(--color-border))];
+                    @apply bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))] shadow-sm;
+                }
+
+                .input {
+                    @apply flex h-10 w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .label {
+                    @apply text-sm font-medium leading-none;
+                    @apply peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+                }
+
+                .badge {
+                    @apply inline-flex items-center rounded-full border border-transparent;
+                    @apply px-2.5 py-0.5 text-xs font-semibold transition-colors;
+                    @apply focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))];
+                }
+
+                .badge-default {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/80;
+                }
+
+                .badge-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80;
+                }
+
+                .badge-outline {
+                    @apply border-[hsl(var(--color-border))] text-[hsl(var(--color-foreground))];
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-background text-foreground antialiased">
+        <!-- Header/Navigation -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        >
+            <div
+                class="container mx-auto flex h-16 items-center justify-between px-4"
+            >
+                <div class="flex items-center gap-8">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <i
+                            data-lucide="briefcase"
+                            class="h-8 w-8 text-primary"
+                        ></i>
+                        <span class="text-xl font-bold">LWS Job Portal</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-muted-foreground"
+                        >Already have an account?</span
+                    >
+                    <a href="login.html" class="btn btn-ghost text-sm"
+                        >Sign In</a
+                    >
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <div class="max-w-2xl mx-auto">
+                <!-- Page Title -->
+                <div class="text-center mb-8">
+                    <div
+                        class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4"
+                    >
+                        <i
+                            data-lucide="user-plus"
+                            class="h-8 w-8 text-primary"
+                        ></i>
+                    </div>
+                    <h1 class="text-4xl font-bold tracking-tight mb-3">
+                        Create Your Account
+                    </h1>
+                    <p class="text-lg text-muted-foreground">
+                        Join thousands of professionals finding their dream jobs
+                    </p>
+                </div>
+
+                <!-- Account Type Toggle -->
+                <div class="w-full text-center">
+                    <div
+                        class="card p-2 mb-8 inline-flex mx-auto w-full max-w-md"
+                    >
+                        <div class="grid grid-cols-2 gap-2 w-full">
+                            <button class="btn btn-primary text-center">
+                                <i data-lucide="user" class="h-4 w-4 mr-2"></i>
+                                Job Seeker
+                            </button>
+                            <a
+                                href="register-company.html"
+                                class="btn btn-ghost text-center"
+                            >
+                                <i
+                                    data-lucide="building-2"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                Employer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registration Card -->
+                <div class="card p-8 md:p-10">
+                    <!-- Registration Form -->
+                    <form class="space-y-5">
+                        <!-- Name Fields Row -->
+                        <div class="space-y-2">
+                            <label for="name" class="label"
+                                >Name <span class="text-red-500">*</span></label
+                            >
+                            <div class="relative">
+                                <i
+                                    data-lucide="user"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                                ></i>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="input pl-10"
+                                    placeholder="John"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Email & Phone Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2">
+                                <label for="email" class="label"
+                                    >Email Address
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="mail"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                                    ></i>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        class="input pl-10"
+                                        placeholder="john.doe@example.com"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="phone" class="label"
+                                    >Phone Number
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="phone"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                                    ></i>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        class="input pl-10"
+                                        placeholder="+1 (555) 000-0000"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job Title & Experience Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2">
+                                <label for="experience" class="label"
+                                    >Years of Experience</label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="calendar"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                                    ></i>
+                                    <select
+                                        id="experience"
+                                        name="experience"
+                                        class="input pl-10"
+                                    >
+                                        <option value="">
+                                            Select experience level
+                                        </option>
+                                        <option value="entry">
+                                            Entry Level (0-2 years)
+                                        </option>
+                                        <option value="mid">
+                                            Mid Level (3-5 years)
+                                        </option>
+                                        <option value="senior">
+                                            Senior (6-10 years)
+                                        </option>
+                                        <option value="expert">
+                                            Expert (10+ years)
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Password Fields Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2">
+                                <label for="password" class="label"
+                                    >Password
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="lock"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                                    ></i>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        class="input pl-10 pr-10"
+                                        placeholder="Create a strong password"
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                        onclick="togglePassword('password')"
+                                    >
+                                        <i
+                                            data-lucide="eye"
+                                            class="h-4 w-4"
+                                        ></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="confirmPassword" class="label"
+                                    >Confirm Password
+                                    <span class="text-red-500">*</span></label
+                                >
+                                <div class="relative">
+                                    <i
+                                        data-lucide="lock"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                                    ></i>
+                                    <input
+                                        type="password"
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        class="input pl-10 pr-10"
+                                        placeholder="Re-enter your password"
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                        onclick="togglePassword('confirmPassword')"
+                                    >
+                                        <i
+                                            data-lucide="eye"
+                                            class="h-4 w-4"
+                                        ></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-muted-foreground -mt-2">
+                            Password must be at least 8 characters with letters
+                            and numbers
+                        </p>
+
+                        <!-- Terms and Conditions -->
+                        <div class="flex items-start gap-2">
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="terms"
+                                class="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-ring"
+                                required
+                            />
+                            <label
+                                for="terms"
+                                class="text-sm text-muted-foreground"
+                            >
+                                I agree to the
+                                <a href="#" class="text-primary hover:underline"
+                                    >Terms of Service</a
+                                >
+                                and
+                                <a href="#" class="text-primary hover:underline"
+                                    >Privacy Policy</a
+                                >
+                            </label>
+                        </div>
+
+                        <!-- Newsletter Subscription -->
+
+                        <!-- Submit Button -->
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-full text-base h-11 mt-2"
+                        >
+                            <i data-lucide="user-plus" class="h-4 w-4 mr-2"></i>
+                            Create Account
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="relative my-8">
+                        <div
+                            class="absolute inset-0 flex items-center"
+                            aria-hidden="true"
+                        >
+                            <div class="w-full border-t border-border"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span
+                                class="px-4 bg-card text-muted-foreground font-medium"
+                                >Or continue with</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Sign In Link -->
+                    <div class="mt-8 text-center text-sm text-muted-foreground">
+                        Already have an account?
+                        <a
+                            href="login.html"
+                            class="text-primary hover:underline font-medium"
+                            >Sign in</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div
+                        class="flex items-start gap-3 p-4 rounded-lg bg-muted/50"
+                    >
+                        <div
+                            class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="briefcase"
+                                class="h-5 w-5 text-primary"
+                            ></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm mb-1">
+                                Thousands of Jobs
+                            </h3>
+                            <p class="text-xs text-muted-foreground">
+                                Access opportunities from top companies
+                                worldwide
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-start gap-3 p-4 rounded-lg bg-muted/50"
+                    >
+                        <div
+                            class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="bell"
+                                class="h-5 w-5 text-primary"
+                            ></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm mb-1">
+                                Job Alerts
+                            </h3>
+                            <p class="text-xs text-muted-foreground">
+                                Get notified when new jobs match your profile
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-start gap-3 p-4 rounded-lg bg-muted/50"
+                    >
+                        <div
+                            class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="shield-check"
+                                class="h-5 w-5 text-primary"
+                            ></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm mb-1">
+                                Secure & Private
+                            </h3>
+                            <p class="text-xs text-muted-foreground">
+                                Your data is protected with industry-standard
+                                security
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-muted-foreground">
+                        By creating an account, you'll get access to thousands
+                        of job opportunities from top companies worldwide.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-border bg-muted/30 mt-16">
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="font-semibold mb-4">LWS Job Portal</h3>
+                        <p class="text-sm text-muted-foreground">
+                            Your trusted platform for finding the perfect job or
+                            the perfect candidate.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Job Seekers</h4>
+                        <ul class="space-y-2 text-sm text-muted-foreground">
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Browse Jobs</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Companies</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Career Advice</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Salary Guide</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Employers</h4>
+                        <ul class="space-y-2 text-sm text-muted-foreground">
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Post a Job</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Browse Candidates</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Employer Resources</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul class="space-y-2 text-sm text-muted-foreground">
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Contact</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Privacy Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-foreground"
+                                    >Terms of Service</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground"
+                >
+                    <p>&copy; 2025 LWS Job Portal. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Toggle password visibility
+            function togglePassword(fieldId) {
+                const field = document.getElementById(fieldId);
+                const icon = event.currentTarget.querySelector("i");
+
+                if (field.type === "password") {
+                    field.type = "text";
+                    icon.setAttribute("data-lucide", "eye-off");
+                } else {
+                    field.type = "password";
+                    icon.setAttribute("data-lucide", "eye");
+                }
+
+                // Reinitialize the icon
+                lucide.createIcons();
+            }
+        </script>
+    </body>
+</html>

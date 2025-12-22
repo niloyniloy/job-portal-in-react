@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TechCorp Solutions - LWS Job Portal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <style type="text/tailwindcss">
+            @layer base {
+                :root {
+                    --color-border: 214.3 31.8% 91.4%;
+                    --color-input: 214.3 31.8% 91.4%;
+                    --color-ring: 222.2 84% 4.9%;
+                    --color-background: 0 0% 100%;
+                    --color-foreground: 222.2 84% 4.9%;
+                    --color-primary: 222.2 47.4% 11.2%;
+                    --color-primary-foreground: 210 40% 98%;
+                    --color-secondary: 210 40% 96.1%;
+                    --color-secondary-foreground: 222.2 47.4% 11.2%;
+                    --color-muted: 210 40% 96.1%;
+                    --color-muted-foreground: 215.4 16.3% 46.9%;
+                    --color-accent: 210 40% 96.1%;
+                    --color-accent-foreground: 222.2 47.4% 11.2%;
+                    --color-card: 0 0% 100%;
+                    --color-card-foreground: 222.2 84% 4.9%;
+                }
+            }
+
+            @layer components {
+                .btn {
+                    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors;
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:pointer-events-none disabled:opacity-50;
+                }
+
+                .btn-primary {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/90 h-10 px-4 py-2;
+                }
+
+                .btn-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80 h-10 px-4 py-2;
+                }
+
+                .btn-outline {
+                    @apply border border-[hsl(var(--color-input))] bg-[hsl(var(--color-background))];
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .btn-ghost {
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .card {
+                    @apply rounded-lg border border-[hsl(var(--color-border))];
+                    @apply bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))] shadow-sm;
+                }
+
+                .input {
+                    @apply flex h-10 w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .badge {
+                    @apply inline-flex items-center rounded-full border border-transparent;
+                    @apply px-2.5 py-0.5 text-xs font-semibold transition-colors;
+                    @apply focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))];
+                }
+
+                .badge-default {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/80;
+                }
+
+                .badge-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80;
+                }
+
+                .badge-outline {
+                    @apply border-[hsl(var(--color-border))] text-[hsl(var(--color-foreground))];
+                }
+
+                .skeleton {
+                    @apply animate-pulse bg-[hsl(var(--color-muted))] rounded-md;
+                }
+            }
+
+            .tab-active {
+                border-bottom: 2px solid hsl(var(--color-primary));
+                color: hsl(var(--color-primary));
+            }
+        </style>
+    </head>
+    <body class="bg-background text-foreground antialiased">
+        <!-- Header/Navigation -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-[hsl(var(--color-border))] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        >
+            <div
+                class="container mx-auto flex h-16 items-center justify-between px-4"
+            >
+                <div class="flex items-center gap-8">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <i
+                            data-lucide="briefcase"
+                            class="h-8 w-8 text-[hsl(var(--color-primary))]"
+                        ></i>
+                        <span class="text-xl font-bold">LWS Job Portal</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a
+                            href="../index.html"
+                            class="text-sm font-medium transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Jobs</a
+                        >
+                        <a
+                            href="#"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Companies</a
+                        >
+                        <a
+                            href="#"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >About</a
+                        >
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="../login.html" class="btn btn-ghost text-sm"
+                        >Sign In</a
+                    >
+                    <a
+                        href="../register-company.html"
+                        class="btn btn-primary text-sm"
+                        >Post a Job</a
+                    >
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Company Header -->
+            <div class="card p-8 mb-8">
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                    <!-- Company Logo -->
+                    <div class="flex-shrink-0">
+                        <div
+                            class="h-32 w-32 rounded-xl bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="building-2"
+                                class="h-16 w-16 text-[hsl(var(--color-primary))]"
+                            ></i>
+                        </div>
+                    </div>
+
+                    <!-- Company Info -->
+                    <div class="flex-1 h-full items-center">
+                        <div
+                            class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+                        >
+                            <div>
+                                <h1 class="text-3xl font-bold mb-2">
+                                    TechCorp Solutions
+                                </h1>
+                                <div
+                                    class="flex flex-wrap items-center gap-3 text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    <span class="flex items-center gap-1">
+                                        <i
+                                            data-lucide="building"
+                                            class="h-4 w-4"
+                                        ></i>
+                                        Technology & Software
+                                    </span>
+                                    <span>•</span>
+                                    <span class="flex items-center gap-1">
+                                        <i
+                                            data-lucide="map-pin"
+                                            class="h-4 w-4"
+                                        ></i>
+                                        San Francisco, CA
+                                    </span>
+                                    <span>•</span>
+                                    <span class="flex items-center gap-1">
+                                        <i
+                                            data-lucide="users"
+                                            class="h-4 w-4"
+                                        ></i>
+                                        500-1000 employees
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn btn-outline">
+                                    <i
+                                        data-lucide="share-2"
+                                        class="h-4 w-4 mr-2"
+                                    ></i>
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Content Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- About Company -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">
+                            About Company
+                        </h2>
+                        <div
+                            class="space-y-4 text-[hsl(var(--color-foreground))]"
+                        >
+                            <p>
+                                TechCorp Solutions is a leading technology
+                                company specializing in enterprise software
+                                solutions. Founded in 2010, we've grown from a
+                                small startup to a thriving organization with
+                                over 750 employees across multiple locations
+                                worldwide.
+                            </p>
+                            <p>
+                                Our mission is to empower businesses through
+                                innovative technology solutions that drive
+                                digital transformation. We work with Fortune 500
+                                companies and startups alike, helping them
+                                leverage cutting-edge technology to solve
+                                complex business challenges.
+                            </p>
+                            <p>
+                                At TechCorp, we believe in fostering a culture
+                                of innovation, collaboration, and continuous
+                                learning. Our team consists of passionate
+                                professionals who are dedicated to creating
+                                products that make a real difference in the
+                                world. We invest heavily in our people,
+                                providing opportunities for growth, learning,
+                                and career advancement.
+                            </p>
+                            <p>
+                                We're proud to be recognized as one of the best
+                                places to work in the tech industry, with
+                                numerous awards for our workplace culture,
+                                employee benefits, and commitment to diversity
+                                and inclusion.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Company Culture & Values -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">Our Values</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex gap-3">
+                                <div class="flex-shrink-0">
+                                    <div
+                                        class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                                    >
+                                        <i
+                                            data-lucide="lightbulb"
+                                            class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                        ></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold mb-1">
+                                        Innovation
+                                    </h3>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        We encourage creative thinking and
+                                        embrace new ideas to solve problems.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex-shrink-0">
+                                    <div
+                                        class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                                    >
+                                        <i
+                                            data-lucide="users"
+                                            class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                        ></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold mb-1">
+                                        Collaboration
+                                    </h3>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        Teamwork and open communication are at
+                                        the heart of everything we do.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex-shrink-0">
+                                    <div
+                                        class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                                    >
+                                        <i
+                                            data-lucide="target"
+                                            class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                        ></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold mb-1">
+                                        Excellence
+                                    </h3>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        We strive for the highest quality in our
+                                        products and services.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="flex-shrink-0">
+                                    <div
+                                        class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                                    >
+                                        <i
+                                            data-lucide="heart"
+                                            class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                        ></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold mb-1">
+                                        Integrity
+                                    </h3>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        Honesty and transparency guide our
+                                        decisions and actions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Open Positions -->
+                    <div class="card p-6" id="jobs">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-semibold">
+                                Open Positions
+                            </h2>
+                            <span
+                                class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >15 jobs available</span
+                            >
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Job Card 1 -->
+                            <article
+                                class="border border-[hsl(var(--color-border))] rounded-lg p-4 hover:shadow-md transition-shadow"
+                            >
+                                <div
+                                    class="flex items-start justify-between gap-4 mb-3"
+                                >
+                                    <div>
+                                        <h3 class="text-lg font-semibold mb-1">
+                                            <a
+                                                href="job-details.html"
+                                                class="hover:underline"
+                                                >Senior Full Stack Developer</a
+                                            >
+                                        </h3>
+                                        <div
+                                            class="flex flex-wrap items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                San Francisco, CA
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="clock"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                Posted 2 days ago
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="users"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                47 applicants
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="btn-ghost p-2 flex-shrink-0"
+                                        title="Save job"
+                                    >
+                                        <i
+                                            data-lucide="bookmark"
+                                            class="h-5 w-5"
+                                        ></i>
+                                    </button>
+                                </div>
+
+                                <p
+                                    class="text-sm text-[hsl(var(--color-muted-foreground))] mb-3"
+                                >
+                                    We're looking for an experienced Full Stack
+                                    Developer to join our dynamic team. You'll
+                                    be working on cutting-edge web applications
+                                    using React, Node.js, and cloud
+                                    technologies.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="badge badge-secondary"
+                                        >Full-time</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Remote</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >React</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Node.js</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >TypeScript</span
+                                    >
+                                </div>
+
+                                <div
+                                    class="flex items-center justify-between pt-3 border-t border-[hsl(var(--color-border))]"
+                                >
+                                    <span
+                                        class="text-sm font-semibold text-[hsl(var(--color-primary))]"
+                                        >$120k - $180k</span
+                                    >
+                                    <div class="flex gap-2">
+                                        <a
+                                            href="job-details.html"
+                                            class="btn btn-outline text-sm"
+                                            >View Details</a
+                                        >
+                                        <button class="btn btn-primary text-sm">
+                                            Apply Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Job Card 2 -->
+                            <article
+                                class="border border-[hsl(var(--color-border))] rounded-lg p-4 hover:shadow-md transition-shadow"
+                            >
+                                <div
+                                    class="flex items-start justify-between gap-4 mb-3"
+                                >
+                                    <div>
+                                        <h3 class="text-lg font-semibold mb-1">
+                                            <a
+                                                href="job-details.html"
+                                                class="hover:underline"
+                                                >DevOps Engineer</a
+                                            >
+                                        </h3>
+                                        <div
+                                            class="flex flex-wrap items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                Austin, TX
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="clock"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                Posted 1 week ago
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="users"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                61 applicants
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="btn-ghost p-2 flex-shrink-0"
+                                        title="Save job"
+                                    >
+                                        <i
+                                            data-lucide="bookmark"
+                                            class="h-5 w-5"
+                                        ></i>
+                                    </button>
+                                </div>
+
+                                <p
+                                    class="text-sm text-[hsl(var(--color-muted-foreground))] mb-3"
+                                >
+                                    Build and maintain our cloud infrastructure
+                                    using AWS, Kubernetes, and Terraform. Help
+                                    us scale our platform to serve millions of
+                                    users worldwide.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="badge badge-secondary"
+                                        >Full-time</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Remote</span
+                                    >
+                                    <span class="badge badge-outline">AWS</span>
+                                    <span class="badge badge-outline"
+                                        >Kubernetes</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Docker</span
+                                    >
+                                </div>
+
+                                <div
+                                    class="flex items-center justify-between pt-3 border-t border-[hsl(var(--color-border))]"
+                                >
+                                    <span
+                                        class="text-sm font-semibold text-[hsl(var(--color-primary))]"
+                                        >$130k - $170k</span
+                                    >
+                                    <div class="flex gap-2">
+                                        <a
+                                            href="job-details.html"
+                                            class="btn btn-outline text-sm"
+                                            >View Details</a
+                                        >
+                                        <button class="btn btn-primary text-sm">
+                                            Apply Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Job Card 3 -->
+                            <article
+                                class="border border-[hsl(var(--color-border))] rounded-lg p-4 hover:shadow-md transition-shadow"
+                            >
+                                <div
+                                    class="flex items-start justify-between gap-4 mb-3"
+                                >
+                                    <div>
+                                        <h3 class="text-lg font-semibold mb-1">
+                                            <a
+                                                href="job-details.html"
+                                                class="hover:underline"
+                                                >Product Manager</a
+                                            >
+                                        </h3>
+                                        <div
+                                            class="flex flex-wrap items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                San Francisco, CA
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="clock"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                Posted 3 days ago
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="users"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                38 applicants
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="btn-ghost p-2 flex-shrink-0"
+                                        title="Save job"
+                                    >
+                                        <i
+                                            data-lucide="bookmark"
+                                            class="h-5 w-5"
+                                        ></i>
+                                    </button>
+                                </div>
+
+                                <p
+                                    class="text-sm text-[hsl(var(--color-muted-foreground))] mb-3"
+                                >
+                                    Lead product strategy and execution for our
+                                    enterprise platform. Work with engineering,
+                                    design, and stakeholders to deliver
+                                    exceptional products.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="badge badge-secondary"
+                                        >Full-time</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Hybrid</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Product Strategy</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Agile</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Leadership</span
+                                    >
+                                </div>
+
+                                <div
+                                    class="flex items-center justify-between pt-3 border-t border-[hsl(var(--color-border))]"
+                                >
+                                    <span
+                                        class="text-sm font-semibold text-[hsl(var(--color-primary))]"
+                                        >$140k - $190k</span
+                                    >
+                                    <div class="flex gap-2">
+                                        <a
+                                            href="job-details.html"
+                                            class="btn btn-outline text-sm"
+                                            >View Details</a
+                                        >
+                                        <button class="btn btn-primary text-sm">
+                                            Apply Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Job Card 4 -->
+                            <article
+                                class="border border-[hsl(var(--color-border))] rounded-lg p-4 hover:shadow-md transition-shadow"
+                            >
+                                <div
+                                    class="flex items-start justify-between gap-4 mb-3"
+                                >
+                                    <div>
+                                        <h3 class="text-lg font-semibold mb-1">
+                                            <a
+                                                href="job-details.html"
+                                                class="hover:underline"
+                                                >UI/UX Designer</a
+                                            >
+                                        </h3>
+                                        <div
+                                            class="flex flex-wrap items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                New York, NY
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="clock"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                Posted 5 days ago
+                                            </span>
+                                            <span>•</span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="users"
+                                                    class="h-4 w-4"
+                                                ></i>
+                                                29 applicants
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="btn-ghost p-2 flex-shrink-0"
+                                        title="Save job"
+                                    >
+                                        <i
+                                            data-lucide="bookmark"
+                                            class="h-5 w-5"
+                                        ></i>
+                                    </button>
+                                </div>
+
+                                <p
+                                    class="text-sm text-[hsl(var(--color-muted-foreground))] mb-3"
+                                >
+                                    Design intuitive and beautiful user
+                                    experiences for our suite of products.
+                                    Experience with Figma and design systems
+                                    required.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="badge badge-secondary"
+                                        >Full-time</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Remote</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Figma</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Design Systems</span
+                                    >
+                                    <span class="badge badge-outline"
+                                        >Prototyping</span
+                                    >
+                                </div>
+
+                                <div
+                                    class="flex items-center justify-between pt-3 border-t border-[hsl(var(--color-border))]"
+                                >
+                                    <span
+                                        class="text-sm font-semibold text-[hsl(var(--color-primary))]"
+                                        >$90k - $140k</span
+                                    >
+                                    <div class="flex gap-2">
+                                        <a
+                                            href="job-details.html"
+                                            class="btn btn-outline text-sm"
+                                            >View Details</a
+                                        >
+                                        <button class="btn btn-primary text-sm">
+                                            Apply Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- View All Jobs -->
+                        <div class="mt-6 text-center">
+                            <a href="../index.html" class="btn btn-outline">
+                                View All Open Positions
+                                <i
+                                    data-lucide="arrow-right"
+                                    class="h-4 w-4 ml-2"
+                                ></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Column -->
+                <div class="lg:col-span-1 space-y-6">
+                    <!-- Contact Information -->
+                    <div class="card p-6">
+                        <h3 class="text-lg font-semibold mb-4">
+                            Contact Information
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <i
+                                    data-lucide="globe"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))] flex-shrink-0 mt-0.5"
+                                ></i>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))] mb-1"
+                                    >
+                                        Website
+                                    </p>
+                                    <a
+                                        href="https://www.techcorp.com"
+                                        class="text-sm font-medium text-[hsl(var(--color-primary))] hover:underline"
+                                    >
+                                        www.techcorp.com
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i
+                                    data-lucide="mail"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))] flex-shrink-0 mt-0.5"
+                                ></i>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))] mb-1"
+                                    >
+                                        Email
+                                    </p>
+                                    <a
+                                        href="mailto:careers@techcorp.com"
+                                        class="text-sm font-medium text-[hsl(var(--color-primary))] hover:underline"
+                                    >
+                                        careers@techcorp.com
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i
+                                    data-lucide="phone"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))] flex-shrink-0 mt-0.5"
+                                ></i>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))] mb-1"
+                                    >
+                                        Phone
+                                    </p>
+                                    <a
+                                        href="tel:+14155551234"
+                                        class="text-sm font-medium"
+                                    >
+                                        +1 (415) 555-1234
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i
+                                    data-lucide="map-pin"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))] flex-shrink-0 mt-0.5"
+                                ></i>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))] mb-1"
+                                    >
+                                        Headquarters
+                                    </p>
+                                    <p class="text-sm font-medium">
+                                        123 Tech Street<br />
+                                        San Francisco, CA 94102<br />
+                                        United States
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="card p-6">
+                        <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                        <div class="space-y-2">
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="linkedin"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium"
+                                    >LinkedIn</span
+                                >
+                            </a>
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="twitter"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium">Twitter</span>
+                            </a>
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="facebook"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium"
+                                    >Facebook</span
+                                >
+                            </a>
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="instagram"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium"
+                                    >Instagram</span
+                                >
+                            </a>
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="github"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="border-t border-[hsl(var(--color-border))] bg-[hsl(var(--color-muted))]/30 mt-16"
+        >
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="font-semibold mb-4">LWS Job Portal</h3>
+                        <p
+                            class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            Your trusted platform for finding the perfect job or
+                            the perfect candidate.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Job Seekers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="../index.html"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Jobs</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Companies</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Career Advice</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Salary Guide</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Employers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Post a Job</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Candidates</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Hiring Resources</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Contact</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Privacy Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Terms of Service</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-[hsl(var(--color-border))] mt-8 pt-8 text-center text-sm text-[hsl(var(--color-muted-foreground))]"
+                >
+                    <p>&copy; 2025 LWS Job Portal. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Manage Jobs - LWS Job Portal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <style type="text/tailwindcss">
+            @layer base {
+                :root {
+                    --color-border: 214.3 31.8% 91.4%;
+                    --color-input: 214.3 31.8% 91.4%;
+                    --color-ring: 222.2 84% 4.9%;
+                    --color-background: 0 0% 100%;
+                    --color-foreground: 222.2 84% 4.9%;
+                    --color-primary: 222.2 47.4% 11.2%;
+                    --color-primary-foreground: 210 40% 98%;
+                    --color-secondary: 210 40% 96.1%;
+                    --color-secondary-foreground: 222.2 47.4% 11.2%;
+                    --color-muted: 210 40% 96.1%;
+                    --color-muted-foreground: 215.4 16.3% 46.9%;
+                    --color-accent: 210 40% 96.1%;
+                    --color-accent-foreground: 222.2 47.4% 11.2%;
+                    --color-card: 0 0% 100%;
+                    --color-card-foreground: 222.2 84% 4.9%;
+                }
+            }
+
+            @layer components {
+                .btn {
+                    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors;
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:pointer-events-none disabled:opacity-50;
+                }
+
+                .btn-primary {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/90 h-10 px-4 py-2;
+                }
+
+                .btn-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80 h-10 px-4 py-2;
+                }
+
+                .btn-outline {
+                    @apply border border-[hsl(var(--color-input))] bg-[hsl(var(--color-background))];
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .btn-ghost {
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .card {
+                    @apply rounded-lg border border-[hsl(var(--color-border))];
+                    @apply bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))] shadow-sm;
+                }
+
+                .input {
+                    @apply flex h-10 w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .badge {
+                    @apply inline-flex items-center rounded-full border border-transparent;
+                    @apply px-2.5 py-0.5 text-xs font-semibold transition-colors;
+                    @apply focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))];
+                }
+
+                .badge-default {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/80;
+                }
+
+                .badge-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80;
+                }
+
+                .badge-success {
+                    @apply bg-green-100 text-green-800 border-green-200;
+                }
+
+                .badge-warning {
+                    @apply bg-yellow-100 text-yellow-800 border-yellow-200;
+                }
+
+                .badge-danger {
+                    @apply bg-red-100 text-red-800 border-red-200;
+                }
+
+                .badge-info {
+                    @apply bg-gray-100 text-gray-800 border-gray-200;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-background text-foreground antialiased">
+        <!-- Header/Navigation -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-[hsl(var(--color-border))] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        >
+            <div
+                class="container mx-auto flex h-16 items-center justify-between px-4"
+            >
+                <div class="flex items-center gap-8">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <i
+                            data-lucide="briefcase"
+                            class="h-8 w-8 text-[hsl(var(--color-primary))]"
+                        ></i>
+                        <span class="text-xl font-bold">LWS Job Portal</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a
+                            href="company-dashboard.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Dashboard</a
+                        >
+                        <a
+                            href="manage-jobs.html"
+                            class="text-sm font-medium text-[hsl(var(--color-primary))]"
+                            >Manage Jobs</a
+                        >
+                        <a
+                            href="#"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Applicants</a
+                        >
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="create-job.html" class="btn btn-primary">
+                        <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                        Post Job
+                    </a>
+
+                    <div class="flex items-center gap-2">
+                        <div
+                            class="h-8 w-8 rounded-full bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="building-2"
+                                class="h-4 w-4 text-[hsl(var(--color-primary))]"
+                            ></i>
+                        </div>
+                        <span class="text-sm font-medium hidden md:inline"
+                            >TechCorp Solutions</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div
+                    class="flex items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))] mb-2"
+                >
+                    <a
+                        href="company-dashboard.html"
+                        class="hover:text-[hsl(var(--color-primary))]"
+                        >Dashboard</a
+                    >
+                    <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                    <span class="text-[hsl(var(--color-foreground))]"
+                        >Manage Jobs</span
+                    >
+                </div>
+                <div
+                    class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+                >
+                    <div>
+                        <h1 class="text-3xl font-bold mb-2">Manage Jobs</h1>
+                        <p class="text-[hsl(var(--color-muted-foreground))]">
+                            View and manage all your job postings
+                        </p>
+                    </div>
+                    <a href="create-job.html" class="btn btn-primary">
+                        <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                        Create New Job
+                    </a>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="card p-4 mb-6">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <i
+                                data-lucide="search"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--color-muted-foreground))]"
+                            ></i>
+                            <input
+                                type="search"
+                                placeholder="Search jobs by title, location..."
+                                class="input pl-10"
+                            />
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="relative">
+                            <button
+                                class="btn btn-outline"
+                                onclick="toggleDropdown('statusFilter')"
+                            >
+                                <i
+                                    data-lucide="filter"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                Status
+                                <i
+                                    data-lucide="chevron-down"
+                                    class="h-4 w-4 ml-2"
+                                ></i>
+                            </button>
+                            <div
+                                id="statusFilter"
+                                class="hidden absolute top-full right-0 mt-2 w-48 card p-2 shadow-lg z-10"
+                            >
+                                <button
+                                    class="w-full text-left px-3 py-2 text-sm rounded hover:bg-[hsl(var(--color-accent))]"
+                                >
+                                    All Status
+                                </button>
+                                <button
+                                    class="w-full text-left px-3 py-2 text-sm rounded hover:bg-[hsl(var(--color-accent))]"
+                                >
+                                    New
+                                </button>
+                                <button
+                                    class="w-full text-left px-3 py-2 text-sm rounded hover:bg-[hsl(var(--color-accent))]"
+                                >
+                                    Hired
+                                </button>
+                                <button
+                                    class="w-full text-left px-3 py-2 text-sm rounded hover:bg-[hsl(var(--color-accent))]"
+                                >
+                                    Shortlisted
+                                </button>
+                                <button
+                                    class="w-full text-left px-3 py-2 text-sm rounded hover:bg-[hsl(var(--color-accent))]"
+                                >
+                                    Rejected
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <button
+                                class="btn btn-outline"
+                                onclick="toggleDropdown('sortFilter')"
+                            >
+                                <i
+                                    data-lucide="arrow-up-down"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                Sort
+                                <i
+                                    data-lucide="chevron-down"
+                                    class="h-4 w-4 ml-2"
+                                ></i>
+                            </button>
+                            <div
+                                id="sortFilter"
+                                class="hidden absolute top-full right-0 mt-2 w-48 card p-2 shadow-lg z-10"
+                            >
+                                <button
+                                    class="w-full text-left px-3 py-2 text-sm rounded hover:bg-[hsl(var(--color-accent))]"
+                                >
+                                    Newest First
+                                </button>
+                                <button
+                                    class="w-full text-left px-3 py-2 text-sm rounded hover:bg-[hsl(var(--color-accent))]"
+                                >
+                                    Oldest First
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs Table -->
+            <div class="card overflow-hidden">
+                <!-- Table Header -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead
+                            class="bg-[hsl(var(--color-muted))] border-b border-[hsl(var(--color-border))]"
+                        >
+                            <tr>
+                                <th
+                                    class="text-left py-4 px-6 text-sm font-medium"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        class="rounded border-[hsl(var(--color-input))]"
+                                    />
+                                </th>
+                                <th
+                                    class="text-left py-4 px-6 text-sm font-medium"
+                                >
+                                    Job Title
+                                </th>
+                                <th
+                                    class="text-left py-4 px-6 text-sm font-medium"
+                                >
+                                    Status
+                                </th>
+                                <th
+                                    class="text-left py-4 px-6 text-sm font-medium"
+                                >
+                                    Applicants
+                                </th>
+                                <th
+                                    class="text-left py-4 px-6 text-sm font-medium"
+                                >
+                                    Posted Date
+                                </th>
+                                <th
+                                    class="text-left py-4 px-6 text-sm font-medium"
+                                >
+                                    Expires
+                                </th>
+                                <th
+                                    class="text-right py-4 px-6 text-sm font-medium"
+                                >
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            class="divide-y divide-[hsl(var(--color-border))]"
+                        >
+                            <!-- Row 1 -->
+                            <tr
+                                class="hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <td class="py-4 px-6">
+                                    <input
+                                        type="checkbox"
+                                        class="rounded border-[hsl(var(--color-input))]"
+                                    />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div>
+                                        <a
+                                            href="job-details.html"
+                                            class="font-medium hover:text-[hsl(var(--color-primary))]"
+                                        >
+                                            Senior Full Stack Developer
+                                        </a>
+                                        <div
+                                            class="flex items-center gap-3 mt-1 text-xs text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                San Francisco, CA
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="briefcase"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Full-time
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="badge badge-success"
+                                        >Active</span
+                                    >
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium">24</span>
+                                    </div>
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Nov 28, 2025
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Dec 28, 2025
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div
+                                        class="flex items-center justify-end gap-2"
+                                    >
+                                        <button
+                                            class="btn-ghost p-2"
+                                            title="Edit"
+                                        >
+                                            <i
+                                                data-lucide="edit"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+
+                                        <button
+                                            class="btn-ghost p-2 text-red-600"
+                                            title="Delete"
+                                        >
+                                            <i
+                                                data-lucide="trash-2"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 2 -->
+                            <tr
+                                class="hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <td class="py-4 px-6">
+                                    <input
+                                        type="checkbox"
+                                        class="rounded border-[hsl(var(--color-input))]"
+                                    />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div>
+                                        <a
+                                            href="job-details.html"
+                                            class="font-medium hover:text-[hsl(var(--color-primary))]"
+                                        >
+                                            Frontend Developer
+                                        </a>
+                                        <div
+                                            class="flex items-center gap-3 mt-1 text-xs text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Remote
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="briefcase"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Full-time
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="badge badge-success"
+                                        >Active</span
+                                    >
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium">18</span>
+                                    </div>
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Nov 25, 2025
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Dec 25, 2025
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div
+                                        class="flex items-center justify-end gap-2"
+                                    >
+                                        <button
+                                            class="btn-ghost p-2"
+                                            title="Edit"
+                                        >
+                                            <i
+                                                data-lucide="edit"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+
+                                        <button
+                                            class="btn-ghost p-2 text-red-600"
+                                            title="Delete"
+                                        >
+                                            <i
+                                                data-lucide="trash-2"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3 -->
+                            <tr
+                                class="hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <td class="py-4 px-6">
+                                    <input
+                                        type="checkbox"
+                                        class="rounded border-[hsl(var(--color-input))]"
+                                    />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div>
+                                        <a
+                                            href="job-details.html"
+                                            class="font-medium hover:text-[hsl(var(--color-primary))]"
+                                        >
+                                            Backend Engineer
+                                        </a>
+                                        <div
+                                            class="flex items-center gap-3 mt-1 text-xs text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Austin, TX
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="briefcase"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Full-time
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="badge badge-success"
+                                        >Active</span
+                                    >
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium">32</span>
+                                    </div>
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Nov 20, 2025
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Dec 20, 2025
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div
+                                        class="flex items-center justify-end gap-2"
+                                    >
+                                        <button
+                                            class="btn-ghost p-2"
+                                            title="Edit"
+                                        >
+                                            <i
+                                                data-lucide="edit"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+
+                                        <button
+                                            class="btn-ghost p-2 text-red-600"
+                                            title="Delete"
+                                        >
+                                            <i
+                                                data-lucide="trash-2"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 4 - Expiring Soon -->
+                            <tr
+                                class="hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <td class="py-4 px-6">
+                                    <input
+                                        type="checkbox"
+                                        class="rounded border-[hsl(var(--color-input))]"
+                                    />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div>
+                                        <a
+                                            href="job-details.html"
+                                            class="font-medium hover:text-[hsl(var(--color-primary))]"
+                                        >
+                                            DevOps Engineer
+                                        </a>
+                                        <div
+                                            class="flex items-center gap-3 mt-1 text-xs text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Seattle, WA
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="briefcase"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Full-time
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="badge badge-warning"
+                                        >Expiring Soon</span
+                                    >
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-medium">15</span>
+                                    </div>
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Nov 15, 2025
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-yellow-600 font-medium"
+                                >
+                                    Dec 5, 2025
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div
+                                        class="flex items-center justify-end gap-2"
+                                    >
+                                        <button
+                                            class="btn-ghost p-2"
+                                            title="Edit"
+                                        >
+                                            <i
+                                                data-lucide="edit"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+
+                                        <button
+                                            class="btn-ghost p-2 text-red-600"
+                                            title="Delete"
+                                        >
+                                            <i
+                                                data-lucide="trash-2"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 5 - Draft -->
+                            <tr
+                                class="hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <td class="py-4 px-6">
+                                    <input
+                                        type="checkbox"
+                                        class="rounded border-[hsl(var(--color-input))]"
+                                    />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div>
+                                        <a
+                                            href="job-details.html"
+                                            class="font-medium hover:text-[hsl(var(--color-primary))]"
+                                        >
+                                            UI/UX Designer
+                                        </a>
+                                        <div
+                                            class="flex items-center gap-3 mt-1 text-xs text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Los Angeles, CA
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="briefcase"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Full-time
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="badge badge-info">Draft</span>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span
+                                        class="text-[hsl(var(--color-muted-foreground))]"
+                                        >-</span
+                                    >
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Nov 30, 2025
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    -
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div
+                                        class="flex items-center justify-end gap-2"
+                                    >
+                                        <button
+                                            class="btn-ghost p-2"
+                                            title="Edit"
+                                        >
+                                            <i
+                                                data-lucide="edit"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                        <button
+                                            class="btn-ghost p-2 text-green-600"
+                                            title="Publish"
+                                        >
+                                            <i
+                                                data-lucide="check-circle"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                        <button
+                                            class="btn-ghost p-2 text-red-600"
+                                            title="Delete"
+                                        >
+                                            <i
+                                                data-lucide="trash-2"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 6 - Closed -->
+                            <tr
+                                class="hover:bg-[hsl(var(--color-accent))] transition-colors opacity-60"
+                            >
+                                <td class="py-4 px-6">
+                                    <input
+                                        type="checkbox"
+                                        class="rounded border-[hsl(var(--color-input))]"
+                                    />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div>
+                                        <a
+                                            href="job-details.html"
+                                            class="font-medium hover:text-[hsl(var(--color-primary))]"
+                                        >
+                                            Product Manager
+                                        </a>
+                                        <div
+                                            class="flex items-center gap-3 mt-1 text-xs text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="map-pin"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Boston, MA
+                                            </span>
+                                            <span
+                                                class="flex items-center gap-1"
+                                            >
+                                                <i
+                                                    data-lucide="briefcase"
+                                                    class="h-3 w-3"
+                                                ></i>
+                                                Full-time
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="badge badge-danger"
+                                        >Closed</span
+                                    >
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="font-medium">45</span>
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Oct 15, 2025
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Nov 15, 2025
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div
+                                        class="flex items-center justify-end gap-2"
+                                    >
+                                        <button
+                                            class="btn-ghost p-2 text-green-600"
+                                            title="Reactivate"
+                                        >
+                                            <i
+                                                data-lucide="play-circle"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                        <button
+                                            class="btn-ghost p-2 text-red-600"
+                                            title="Delete"
+                                        >
+                                            <i
+                                                data-lucide="trash-2"
+                                                class="h-4 w-4"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Bulk Actions Bar (Hidden by default) -->
+                <div
+                    class="hidden p-4 bg-[hsl(var(--color-accent))] border-t border-[hsl(var(--color-border))]"
+                    id="bulkActionsBar"
+                >
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-medium">
+                            <span id="selectedCount">0</span> jobs selected
+                        </span>
+                        <div class="flex items-center gap-2">
+                            <button class="btn btn-outline text-sm h-9">
+                                <i
+                                    data-lucide="pause-circle"
+                                    class="h-3 w-3 mr-2"
+                                ></i>
+                                Deactivate
+                            </button>
+                            <button class="btn btn-outline text-sm h-9">
+                                <i
+                                    data-lucide="play-circle"
+                                    class="h-3 w-3 mr-2"
+                                ></i>
+                                Activate
+                            </button>
+                            <button
+                                class="btn btn-outline text-sm h-9 text-red-600"
+                            >
+                                <i
+                                    data-lucide="trash-2"
+                                    class="h-3 w-3 mr-2"
+                                ></i>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="p-4 border-t border-[hsl(var(--color-border))]">
+                    <div class="flex items-center justify-between">
+                        <div
+                            class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            Showing <span class="font-medium">1</span> to
+                            <span class="font-medium">6</span> of
+                            <span class="font-medium">24</span> jobs
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="btn btn-outline h-9 px-3" disabled>
+                                <i
+                                    data-lucide="chevron-left"
+                                    class="h-4 w-4"
+                                ></i>
+                            </button>
+                            <button class="btn btn-primary h-9 px-3">1</button>
+                            <button class="btn btn-outline h-9 px-3">2</button>
+                            <button class="btn btn-outline h-9 px-3">3</button>
+                            <button class="btn btn-outline h-9 px-3">4</button>
+                            <button class="btn btn-outline h-9 px-3">
+                                <i
+                                    data-lucide="chevron-right"
+                                    class="h-4 w-4"
+                                ></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="border-t border-[hsl(var(--color-border))] bg-[hsl(var(--color-muted))]/30 mt-16"
+        >
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="font-semibold mb-4">LWS Job Portal</h3>
+                        <p
+                            class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            Your trusted platform for finding the perfect job or
+                            the perfect candidate.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Job Seekers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="../index.html"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Jobs</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Companies</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Career Advice</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Salary Guide</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Employers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Post a Job</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Candidates</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Hiring Resources</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Contact</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Privacy Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Terms of Service</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-[hsl(var(--color-border))] mt-8 pt-8 text-center text-sm text-[hsl(var(--color-muted-foreground))]"
+                >
+                    <p>&copy; 2025 LWS Job Portal. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Dropdown toggle function
+            function toggleDropdown(id) {
+                const dropdown = document.getElementById(id);
+                dropdown.classList.toggle("hidden");
+
+                // Close dropdown when clicking outside
+                document.addEventListener("click", function closeDropdown(e) {
+                    if (
+                        !e.target.closest(`#${id}`) &&
+                        !e.target.closest("button")
+                    ) {
+                        dropdown.classList.add("hidden");
+                        document.removeEventListener("click", closeDropdown);
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

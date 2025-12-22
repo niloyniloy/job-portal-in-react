@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Profile - LWS Job Portal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <style type="text/tailwindcss">
+            @layer base {
+                :root {
+                    --color-border: 214.3 31.8% 91.4%;
+                    --color-input: 214.3 31.8% 91.4%;
+                    --color-ring: 222.2 84% 4.9%;
+                    --color-background: 0 0% 100%;
+                    --color-foreground: 222.2 84% 4.9%;
+                    --color-primary: 222.2 47.4% 11.2%;
+                    --color-primary-foreground: 210 40% 98%;
+                    --color-secondary: 210 40% 96.1%;
+                    --color-secondary-foreground: 222.2 47.4% 11.2%;
+                    --color-muted: 210 40% 96.1%;
+                    --color-muted-foreground: 215.4 16.3% 46.9%;
+                    --color-accent: 210 40% 96.1%;
+                    --color-accent-foreground: 222.2 47.4% 11.2%;
+                    --color-card: 0 0% 100%;
+                    --color-card-foreground: 222.2 84% 4.9%;
+                }
+            }
+
+            @layer components {
+                .btn {
+                    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors;
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:pointer-events-none disabled:opacity-50;
+                }
+
+                .btn-primary {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/90 h-10 px-4 py-2;
+                }
+
+                .btn-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80 h-10 px-4 py-2;
+                }
+
+                .btn-outline {
+                    @apply border border-[hsl(var(--color-input))] bg-[hsl(var(--color-background))];
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .btn-ghost {
+                    @apply hover:bg-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-foreground))];
+                    @apply h-10 px-4 py-2;
+                }
+
+                .card {
+                    @apply rounded-lg border border-[hsl(var(--color-border))];
+                    @apply bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))] shadow-sm;
+                }
+
+                .input {
+                    @apply flex h-10 w-full rounded-md border border-[hsl(var(--color-input))];
+                    @apply bg-[hsl(var(--color-background))] px-3 py-2 text-sm;
+                    @apply placeholder:text-[hsl(var(--color-muted-foreground))];
+                    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--color-ring))];
+                    @apply disabled:cursor-not-allowed disabled:opacity-50;
+                }
+
+                .badge {
+                    @apply inline-flex items-center rounded-full border border-transparent;
+                    @apply px-2.5 py-0.5 text-xs font-semibold transition-colors;
+                    @apply focus:outline-none focus:ring-2 focus:ring-[hsl(var(--color-ring))];
+                }
+
+                .badge-default {
+                    @apply bg-[hsl(var(--color-primary))] text-[hsl(var(--color-primary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-primary))]/80;
+                }
+
+                .badge-secondary {
+                    @apply bg-[hsl(var(--color-secondary))] text-[hsl(var(--color-secondary-foreground))];
+                    @apply hover:bg-[hsl(var(--color-secondary))]/80;
+                }
+
+                .badge-outline {
+                    @apply border-[hsl(var(--color-border))] text-[hsl(var(--color-foreground))];
+                }
+
+                .skeleton {
+                    @apply animate-pulse bg-[hsl(var(--color-muted))] rounded-md;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-background text-foreground antialiased">
+        <!-- Header/Navigation -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-[hsl(var(--color-border))] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+        >
+            <div
+                class="container mx-auto flex h-16 items-center justify-between px-4"
+            >
+                <div class="flex items-center gap-8">
+                    <a href="../index.html" class="flex items-center space-x-2">
+                        <i
+                            data-lucide="briefcase"
+                            class="h-8 w-8 text-[hsl(var(--color-primary))]"
+                        ></i>
+                        <span class="text-xl font-bold">LWS Job Portal</span>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a
+                            href="../index.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Jobs</a
+                        >
+                        <a
+                            href="user-dashboard.html"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >Dashboard</a
+                        >
+                        <a
+                            href="#"
+                            class="text-sm font-medium text-[hsl(var(--color-muted-foreground))] transition-colors hover:text-[hsl(var(--color-primary))]"
+                            >My Applications</a
+                        >
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <div
+                            class="h-8 w-8 rounded-full bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="user"
+                                class="h-4 w-4 text-[hsl(var(--color-primary))]"
+                            ></i>
+                        </div>
+                        <span class="text-sm font-medium hidden md:inline"
+                            >John Doe</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Profile Header -->
+            <div class="card p-8 mb-8">
+                <div
+                    class="flex flex-col md:flex-row items-start md:items-center gap-6"
+                >
+                    <!-- Profile Photo -->
+                    <div class="relative flex-shrink-0">
+                        <div
+                            class="h-32 w-32 rounded-full bg-[hsl(var(--color-secondary))] flex items-center justify-center"
+                        >
+                            <i
+                                data-lucide="user"
+                                class="h-16 w-16 text-[hsl(var(--color-primary))]"
+                            ></i>
+                        </div>
+                        <div
+                            class="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-[hsl(var(--color-primary))] flex items-center justify-center border-4 border-white"
+                        >
+                            <i
+                                data-lucide="camera"
+                                class="h-5 w-5 text-white"
+                            ></i>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div class="flex-1">
+                        <div
+                            class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3"
+                        >
+                            <div>
+                                <h1 class="text-3xl font-bold mb-2">
+                                    John Doe
+                                </h1>
+                                <p
+                                    class="text-lg text-[hsl(var(--color-muted-foreground))] mb-2"
+                                >
+                                    Full Stack Developer
+                                </p>
+                                <div
+                                    class="flex flex-wrap items-center gap-3 text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    <span class="flex items-center gap-1">
+                                        <i
+                                            data-lucide="map-pin"
+                                            class="h-4 w-4"
+                                        ></i>
+                                        San Francisco, CA
+                                    </span>
+                                    <span>•</span>
+                                    <span class="flex items-center gap-1">
+                                        <i
+                                            data-lucide="calendar"
+                                            class="h-4 w-4"
+                                        ></i>
+                                        Member since Jan 2024
+                                    </span>
+                                </div>
+                            </div>
+                            <a
+                                href="edit-user-profile.html"
+                                class="btn btn-primary"
+                            >
+                                <i data-lucide="edit" class="h-4 w-4 mr-2"></i>
+                                Edit Profile
+                            </a>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div
+                            class="grid grid-cols-3 gap-4 pt-4 border-t border-[hsl(var(--color-border))]"
+                        >
+                            <div>
+                                <p
+                                    class="text-2xl font-bold text-[hsl(var(--color-primary))]"
+                                >
+                                    12
+                                </p>
+                                <p
+                                    class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Applications
+                                </p>
+                            </div>
+                            <div>
+                                <p
+                                    class="text-2xl font-bold text-[hsl(var(--color-primary))]"
+                                >
+                                    5
+                                </p>
+                                <p
+                                    class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    In Review
+                                </p>
+                            </div>
+                            <div>
+                                <p
+                                    class="text-2xl font-bold text-[hsl(var(--color-primary))]"
+                                >
+                                    18
+                                </p>
+                                <p
+                                    class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                >
+                                    Saved Jobs
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Content Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- About -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">About</h2>
+                        <p
+                            class="text-[hsl(var(--color-foreground))] leading-relaxed"
+                        >
+                            Experienced Full Stack Developer with 5+ years of
+                            expertise in building scalable web applications.
+                            Passionate about creating clean, efficient code and
+                            delivering exceptional user experiences. Strong
+                            background in React, Node.js, and cloud
+                            technologies.
+                        </p>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">
+                            Contact Information
+                        </h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        data-lucide="mail"
+                                        class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                    ></i>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        Email
+                                    </p>
+                                    <p class="font-medium">
+                                        john.doe@example.com
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        data-lucide="phone"
+                                        class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                    ></i>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        Phone
+                                    </p>
+                                    <p class="font-medium">+1 (415) 555-0123</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        data-lucide="map-pin"
+                                        class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                    ></i>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        Location
+                                    </p>
+                                    <p class="font-medium">
+                                        San Francisco, CA 94102
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="h-10 w-10 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        data-lucide="linkedin"
+                                        class="h-5 w-5 text-[hsl(var(--color-primary))]"
+                                    ></i>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        LinkedIn
+                                    </p>
+                                    <a
+                                        href="#"
+                                        class="font-medium text-[hsl(var(--color-primary))] hover:underline"
+                                        >linkedin.com/in/johndoe</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">Skills</h2>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge badge-secondary"
+                                >JavaScript</span
+                            >
+                            <span class="badge badge-secondary"
+                                >TypeScript</span
+                            >
+                            <span class="badge badge-secondary">React</span>
+                            <span class="badge badge-secondary">Node.js</span>
+                            <span class="badge badge-secondary">Express</span>
+                            <span class="badge badge-secondary">MongoDB</span>
+                            <span class="badge badge-secondary"
+                                >PostgreSQL</span
+                            >
+                            <span class="badge badge-secondary">Git</span>
+                            <span class="badge badge-secondary">Docker</span>
+                            <span class="badge badge-secondary">AWS</span>
+                            <span class="badge badge-secondary">REST API</span>
+                            <span class="badge badge-secondary">GraphQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">
+                            Work Experience
+                        </h2>
+                        <div class="space-y-6">
+                            <!-- Experience 1 -->
+                            <div
+                                class="relative pl-8 pb-6 border-l-2 border-[hsl(var(--color-border))] last:pb-0"
+                            >
+                                <div
+                                    class="absolute -left-2 top-0 h-4 w-4 rounded-full bg-[hsl(var(--color-primary))] border-2 border-white"
+                                ></div>
+                                <div>
+                                    <h3 class="font-semibold mb-1">
+                                        Senior Full Stack Developer
+                                    </h3>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))] mb-2"
+                                    >
+                                        TechCorp Solutions • Full-time
+                                    </p>
+                                    <p
+                                        class="text-xs text-[hsl(var(--color-muted-foreground))] mb-3"
+                                    >
+                                        Jan 2022 - Present • 2 years
+                                    </p>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-foreground))]"
+                                    >
+                                        Leading development of enterprise web
+                                        applications using React and Node.js.
+                                        Architecting scalable solutions and
+                                        mentoring junior developers.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Experience 2 -->
+                            <div
+                                class="relative pl-8 pb-6 border-l-2 border-[hsl(var(--color-border))] last:pb-0"
+                            >
+                                <div
+                                    class="absolute -left-2 top-0 h-4 w-4 rounded-full bg-[hsl(var(--color-secondary))] border-2 border-white"
+                                ></div>
+                                <div>
+                                    <h3 class="font-semibold mb-1">
+                                        Full Stack Developer
+                                    </h3>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))] mb-2"
+                                    >
+                                        WebTech Industries • Full-time
+                                    </p>
+                                    <p
+                                        class="text-xs text-[hsl(var(--color-muted-foreground))] mb-3"
+                                    >
+                                        Jun 2020 - Dec 2021 • 1.5 years
+                                    </p>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-foreground))]"
+                                    >
+                                        Developed and maintained multiple client
+                                        projects using modern JavaScript
+                                        frameworks. Collaborated with
+                                        cross-functional teams to deliver
+                                        high-quality solutions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">Education</h2>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div
+                                    class="h-12 w-12 rounded-lg bg-[hsl(var(--color-secondary))] flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        data-lucide="graduation-cap"
+                                        class="h-6 w-6 text-[hsl(var(--color-primary))]"
+                                    ></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold mb-1">
+                                        Bachelor of Science in Computer Science
+                                    </h3>
+                                    <p
+                                        class="text-sm text-[hsl(var(--color-muted-foreground))] mb-1"
+                                    >
+                                        Stanford University
+                                    </p>
+                                    <p
+                                        class="text-xs text-[hsl(var(--color-muted-foreground))]"
+                                    >
+                                        2016 - 2020
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Column -->
+                <div class="lg:col-span-1 space-y-6">
+                    <!-- Resume -->
+                    <div class="card p-6">
+                        <h3 class="text-lg font-semibold mb-4">Resume</h3>
+                        <div class="space-y-4">
+                            <div
+                                class="p-4 bg-[hsl(var(--color-secondary))] rounded-lg"
+                            >
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div
+                                        class="h-12 w-12 rounded-lg bg-white flex items-center justify-center flex-shrink-0"
+                                    >
+                                        <i
+                                            data-lucide="file-text"
+                                            class="h-6 w-6 text-[hsl(var(--color-primary))]"
+                                        ></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="font-medium text-sm truncate">
+                                            John_Doe_Resume.pdf
+                                        </p>
+                                        <p
+                                            class="text-xs text-[hsl(var(--color-muted-foreground))]"
+                                        >
+                                            Updated Nov 28, 2025
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a
+                                        href="#"
+                                        class="btn btn-outline w-full text-xs h-9"
+                                    >
+                                        <i
+                                            data-lucide="download"
+                                            class="h-3 w-3 mr-2"
+                                        ></i>
+                                        Download
+                                    </a>
+                                </div>
+                            </div>
+                            <a
+                                href="edit-user-profile.html"
+                                class="btn btn-outline w-full"
+                            >
+                                <i
+                                    data-lucide="upload"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                Update Resume
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="card p-6">
+                        <h3 class="text-lg font-semibold mb-4">
+                            Social Profiles
+                        </h3>
+                        <div class="space-y-2">
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="linkedin"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium"
+                                    >LinkedIn</span
+                                >
+                            </a>
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="github"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium">GitHub</span>
+                            </a>
+                            <a
+                                href="#"
+                                class="flex items-center gap-3 p-2 rounded-md hover:bg-[hsl(var(--color-accent))] transition-colors"
+                            >
+                                <i
+                                    data-lucide="globe"
+                                    class="h-5 w-5 text-[hsl(var(--color-muted-foreground))]"
+                                ></i>
+                                <span class="text-sm font-medium"
+                                    >Portfolio</span
+                                >
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card p-6">
+                        <h3 class="text-lg font-semibold mb-4">
+                            Quick Actions
+                        </h3>
+                        <div class="space-y-2">
+                            <a
+                                href="user-dashboard.html"
+                                class="btn btn-outline w-full justify-start"
+                            >
+                                <i
+                                    data-lucide="layout-dashboard"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                View Dashboard
+                            </a>
+                            <a
+                                href="#"
+                                class="btn btn-outline w-full justify-start"
+                            >
+                                <i
+                                    data-lucide="file-text"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                My Applications
+                            </a>
+                            <a
+                                href="#"
+                                class="btn btn-outline w-full justify-start"
+                            >
+                                <i
+                                    data-lucide="bookmark"
+                                    class="h-4 w-4 mr-2"
+                                ></i>
+                                Saved Jobs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="border-t border-[hsl(var(--color-border))] bg-[hsl(var(--color-muted))]/30 mt-16"
+        >
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="font-semibold mb-4">LWS Job Portal</h3>
+                        <p
+                            class="text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            Your trusted platform for finding the perfect job or
+                            the perfect candidate.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Job Seekers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="../index.html"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Jobs</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Companies</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Career Advice</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Salary Guide</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Employers</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Post a Job</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Browse Candidates</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Hiring Resources</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul
+                            class="space-y-2 text-sm text-[hsl(var(--color-muted-foreground))]"
+                        >
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Contact</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Privacy Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[hsl(var(--color-foreground))]"
+                                    >Terms of Service</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-[hsl(var(--color-border))] mt-8 pt-8 text-center text-sm text-[hsl(var(--color-muted-foreground))]"
+                >
+                    <p>&copy; 2025 LWS Job Portal. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize Lucide icons
+            lucide.createIcons();
+        </script>
+    </body>
+</html>
