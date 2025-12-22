@@ -27,34 +27,7 @@ import ManageJobs from './components/companies/ManageJobs'
 import PostJob from './components/companies/PostJob'
 import EditCompanyProfile from './components/companies/EditCompanyProfile'
 
-const location = window.location;
-const token = localStorage.getItem("token");
 
-if (!token) {
-	const userNotAllowedRoutes = [
-		"/user/dashboard",
-		"/user/applications",
-		"/user-profile",
-		"/user-profile/edit",
-		"/company/dashboard",
-		"/company/applicants",
-		"/company/jobs",
-		"/company/post-job",
-	];
-
-	let isAllowed = true;
-
-	for (let i = 0; i < userNotAllowedRoutes.length; i++) {
-		if (location.pathname.includes(userNotAllowedRoutes[i])) {
-			isAllowed = false;
-			break;
-		}
-	}
-
-	if (!isAllowed) {
-		window.location.replace("/");
-	}
-}
 
 
 const router = createBrowserRouter([
@@ -62,24 +35,21 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <App />,
 		children: [
+			{ index: true, element: <Home /> },
 			{
-				path: "/",
-				element: <Home />
-			},
-			{
-				path: "/jobseeker-login",
+				path: "jobseeker-login",
 				element: <JobSeekerLogin />
 			},
 			{
-				path: "/company-login",
+				path: "company-login",
 				element: <CompanyLogin />
 			},
 			{
-				path: "/jobseeker-register",
+				path: "jobseeker-register",
 				element: <JobSeekerRegister />
 			},
 			{
-				path: "/company-register",
+				path: "company-register",
 				element: <CompanyRegister />
 			},
 			{
