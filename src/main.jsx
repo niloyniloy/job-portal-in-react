@@ -27,7 +27,34 @@ import ManageJobs from './components/companies/ManageJobs'
 import PostJob from './components/companies/PostJob'
 import EditCompanyProfile from './components/companies/EditCompanyProfile'
 
+const location = window.location;
+const token = localStorage.getItem("token");
 
+if (!token) {
+	const userNotAllowedRoutes = [
+		"/user/dashboard",
+		"/user/applications",
+		"/user-profile",
+		"/user-profile/edit",
+		"/company/dashboard",
+		"/company/applicants",
+		"/company/jobs",
+		"/company/post-job",
+	];
+
+	let isAllowed = true;
+
+	for (let i = 0; i < userNotAllowedRoutes.length; i++) {
+		if (location.pathname.includes(userNotAllowedRoutes[i])) {
+			isAllowed = false;
+			break;
+		}
+	}
+
+	if (!isAllowed) {
+		window.location.replace("/");
+	}
+}
 
 
 const router = createBrowserRouter([

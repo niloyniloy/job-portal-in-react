@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import axios from "axios";
 
-export const CDN_URL = "http://localhost:9000";
-export const baseURL = "http://localhost:9000/api";
+export const CDN_URL = import.meta.env.VITE_API_URL;
+export const baseURL = import.meta.env.VITE_API_URL+"/api";
 
 
 
