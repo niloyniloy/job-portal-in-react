@@ -110,7 +110,7 @@ function JobApplicants() {
 							>
 								Dashboard
 							</Link>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right h-4 w-4"><path d="m9 18 6-6-6-6"></path></svg>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="chevron-right" className="lucide lucide-chevron-right h-4 w-4"><path d="m9 18 6-6-6-6"></path></svg>
 							<span className="text-[hsl(var(--color-foreground))]">Applicants</span>
 						</div>
 						<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -333,7 +333,7 @@ function JobApplicants() {
 													</div>
 													<span className={`badge ${getStatusBadgeClass(applicant.status)}`}>{applicant.status}</span>
 												</div>
-												<p className="text-sm text-[hsl(var(--color-muted-foreground))]">Applied for &nbsp;<span class="font-medium text-[hsl(var(--color-foreground))]">{applicant.job?.title}</span></p>
+												<p className="text-sm text-[hsl(var(--color-muted-foreground))]">Applied for &nbsp;<span className="font-medium text-[hsl(var(--color-foreground))]">{applicant.job?.title}</span></p>
 												<br/>
 												<p className="text-sm text-[hsl(var(--color-muted-foreground))] mb-4">{applicant.coverLetter}</p>
 

@@ -170,12 +170,11 @@ function JobDetails({ jobs }) {
 												{jobDetails.title}
 											</h1>
 											<div className="flex flex-wrap items-center gap-3 text-[hsl(var(--color-muted-foreground))]">
-												<a
-													href="company-profile.html"
+												<span
 													className="text-lg font-medium hover:text-[hsl(var(--color-primary))]"
 												>
 													{jobDetails?.company?.name}
-												</a>
+												</span>
 												<span>•</span>
 												<span className="flex items-center gap-1">
 													<MapPinIconSmall />

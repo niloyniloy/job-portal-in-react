@@ -323,7 +323,7 @@ export const getUsersProfie = (setUsersProfile) => {
     }
 };
 
-export const uploadProfilePicture = (file, setToast) => {
+export const uploadProfilePicture = (file, setToast, setUser) => {
 
     if (!checkUserLoggedIn()) {
         return Promise.reject(new Error("User not logged in"));
@@ -356,6 +356,8 @@ export const uploadProfilePicture = (file, setToast) => {
         }
     }).then((response) => {
         setToast({ message: "Profile picture updated successfully", type: "success" });
+        setUser( response.data.data );
+        
         return response.data.data;
     }).catch((error) => {
         const errorMsg = error.response?.data?.message || "Failed to upload profile picture";
@@ -905,6 +907,8 @@ export const getLoggedInUserProfile = (setUser, setIsAuthenticated, setRole, cur
         })
         .catch((error) => {
             setIsAuthenticated(false);
-            window.location.replace("/");
+            if ( currentLocation !== '/' ) {
+                window.location.replace("/");
+            }
         });
 }

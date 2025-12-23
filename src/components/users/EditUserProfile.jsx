@@ -2,7 +2,7 @@
 import { useParams, Link } from "react-router-dom";
 import { CDN_URL, updateUsersProfile, formatResumeDate, renderProfileImage, getUsersProfie, uploadResume, getMyApplicationsWithFilters, uploadProfilePicture } from "./../../api/ApiCalls";
 import { useState, useEffect, useRef } from "react";
-
+import { useAuthStore } from "./../../states/AuthStore";
 
 function EditUserProfile() {
 
@@ -13,6 +13,7 @@ function EditUserProfile() {
 	const [toast, setToast] = useState({ message: "", type: "" });
 	const [uploading, setUploading] = useState(false);
 	const [resumeUploading, setResumeUploading] = useState(false);
+	const setUser = useAuthStore((s) => s.setUser);
 	const skillRef = useRef(null);
 
 	useEffect(() => {
@@ -29,7 +30,7 @@ function EditUserProfile() {
 		if (!file) return;
 
 		setUploading(true);
-		uploadProfilePicture(file, setToast)
+		uploadProfilePicture(file, setToast, setUser)
 			.then((data) => {
 				setUsersProfile(prev => ({
 					...prev,
@@ -266,7 +267,7 @@ function EditUserProfile() {
 								Update your personal information and preferences
 							</p>
 						</div>
-						<a href="user-profile.html" className="btn btn-outline">
+						<a href="/user-profile" className="btn btn-outline">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 							Cancel
 						</a>
@@ -764,7 +765,7 @@ function EditUserProfile() {
 					{/* Form Actions */}
 					<div className="card p-6">
 						<div className="flex flex-col sm:flex-row gap-3 justify-end">
-							<a href="user-profile.html" className="btn btn-outline">
+							<a href="/user-profile" className="btn btn-outline">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
 								Cancel
 							</a>

@@ -1,6 +1,10 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { createJob, updateJob, getJobById, getJobBySlug } from "../../api/ApiCalls";
+import ChevronRightIcon from "../icons/ChevronRightIcon";
+import CloseIcon from "../icons/CloseIcon";
+import PlusIcon from "../icons/PlusIcon";
+import SendIcon from "../icons/SendIcon";
 
 function PostJob() {
 	const { jobSlug } = useParams();
@@ -113,7 +117,7 @@ function PostJob() {
 						<Link to="/company/dashboard" className="hover:text-[hsl(var(--color-primary))]" reloadDocument>
 							Dashboard
 						</Link>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right h-4 w-4"><path d="m9 18 6-6-6-6"></path></svg>
+						<ChevronRightIcon />
 						<span className="text-[hsl(var(--color-foreground))]">{jobSlug ? 'Edit Job' : 'Create Job'}</span>
 					</div>
 					<div className="flex items-center justify-between">
@@ -124,7 +128,7 @@ function PostJob() {
 							</p>
 						</div>
 						<Link to="/company/jobs" className="btn btn-outline" reloadDocument>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x h-4 w-4 mr-2"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+							<CloseIcon />
 							Cancel
 						</Link>
 					</div>
@@ -339,7 +343,7 @@ function PostJob() {
 										placeholder="Type a skill and press Add"
 									/>
 									<button type="button" onClick={addSkill} className="btn btn-primary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" class="lucide lucide-plus h-4 w-4 mr-2"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="plus" className="lucide lucide-plus h-4 w-4 mr-2"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
 										Add
 									</button>
 								</div>
@@ -355,7 +359,7 @@ function PostJob() {
 											<span key={skill} className="badge badge-secondary inline-flex items-center gap-1">
 												{skill}
 												<button type="button" onClick={() => removeSkill(skill)} className="hover:text-red-600">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x h-3 w-3"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="x" className="lucide lucide-x h-3 w-3"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
 												</button>
 											</span>
 										))}
@@ -401,7 +405,7 @@ function PostJob() {
 								Cancel
 							</Link>
 							<button type="submit" className="btn btn-primary">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" class="lucide lucide-send h-4 w-4 mr-2"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="send" className="lucide lucide-send h-4 w-4 mr-2"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
 								{jobSlug ? 'Update Job' : 'Publish Job'}
 							</button>
 						</div>

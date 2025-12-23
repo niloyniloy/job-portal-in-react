@@ -3,6 +3,14 @@ import { useState, useEffect } from "react";
 import { getCompanyJobs, deleteCompanyJob } from "../../api/ApiCalls"; 
 import ChevronRightIcon from "./../icons/ChevronRightIcon";
 import ChevronLeftIcon from "./../icons/ChevronLeftIcon";
+import SearchIcon from "./../icons/SearchIcon";
+import FilterIcon from "./../icons/FilterIcon";
+
+import ChevronDownIcon from "./../icons/ChevronDownIcon";
+import ArrowUpDownIcon from "./../icons/ArrowUpDownIcon";
+import PlusIcon from "./../icons/PlusIcon";
+import EditIcon from "./../icons/EditIcon";
+import TrashIcon from "./../icons/TrashIcon";
 
 
 function ManageJobs() {
@@ -93,7 +101,7 @@ function ManageJobs() {
 						<Link to="/company/dashboard" className="hover:text-[hsl(var(--color-primary))]" reloadDocument>
 							Dashboard
 						</Link>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right h-4 w-4"><path d="m9 18 6-6-6-6"></path></svg>
+						<ChevronRightIcon />
 						<span className="text-[hsl(var(--color-foreground))]">Manage Jobs</span>
 					</div>
 					<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -102,7 +110,7 @@ function ManageJobs() {
 							<p className="text-[hsl(var(--color-muted-foreground))]">View and manage your job postings</p>
 						</div>
 						<Link to="/company/post-job" className="btn btn-primary" reloadDocument>
-							<svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+							<PlusIcon />
 							Post New Job
 						</Link>
 					</div>
@@ -112,7 +120,7 @@ function ManageJobs() {
 					<div className="flex flex-col md:flex-row gap-4">
 						<div className="flex-1">
 							<div className="relative">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" class="lucide lucide-search absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--color-muted-foreground))]"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+								<SearchIcon />
 								<input
 									type="text"
 									placeholder="Search jobs..."
@@ -125,9 +133,9 @@ function ManageJobs() {
 						<div className="flex gap-2">
 							<div className="dropdown">
 								<button onClick={() => toggleDropdown('statusFilter')} className="btn btn-outline">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="filter" class="lucide lucide-filter h-4 w-4 mr-2"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"></path></svg>
+									<FilterIcon />
 									{getStatusLabel()}
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down h-4 w-4 ml-2"><path d="m6 9 6 6 6-6"></path></svg>
+									<ChevronDownIcon />
 								</button>
 								<div id="statusFilter" className="dropdown-content card p-2 hidden">
 									<button onClick={() => handleStatus("")} className="w-full text-left text-sm p-2 hover:bg-accent rounded">All</button>
@@ -138,9 +146,9 @@ function ManageJobs() {
 							</div>
 							<div className="dropdown">
 								<button onClick={() => toggleDropdown('sortFilter')} className="btn btn-outline">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-down" class="lucide lucide-arrow-up-down h-4 w-4 mr-2"><path d="m21 16-4 4-4-4"></path><path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path><path d="M7 4v16"></path></svg>
+									<ArrowUpDownIcon />
 									{getSortLabel()}
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down h-4 w-4 ml-2"><path d="m6 9 6 6 6-6"></path></svg>
+									<ChevronDownIcon />
 								</button>
 								<div id="sortFilter" className="dropdown-content card p-2 hidden">
 									<button onClick={() => handleSort("newest")} className="w-full text-left text-sm p-2 hover:bg-accent rounded">Newest First</button>
@@ -193,10 +201,10 @@ function ManageJobs() {
 										<td className="p-4">
 											<div className="flex gap-2">
 												<Link to={`/company/post-job/${job.slug}`} className="btn-ghost p-2" title="Edit" reloadDocument>
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="edit" class="lucide lucide-edit h-4 w-4"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg>
+													<EditIcon />
 												</Link>
 												<button style={{paddingBottom:"20px"}} onClick={() => deleteJob(job.id)} className="btn-ghost p-2 text-red-600" title="Delete">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trash-2" class="lucide lucide-trash-2 h-4 w-4"><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+													<TrashIcon />
 												</button>
 											</div>
 										</td>

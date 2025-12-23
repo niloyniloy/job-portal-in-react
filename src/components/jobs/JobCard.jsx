@@ -3,6 +3,10 @@ import { timeAgo, checkUserLoggedIn, renderProfileImage, submitApplication, with
 import { useState, useEffect } from "react";
 import Modal from './../Modal'
 import ApplyJob from './ApplyJob'
+import CompanyLogoIcon from "../icons/CompanyLogoIcon";
+import MapPinIcon from "../icons/MapPinIcon";
+import ClockIcon from "../icons/ClockIcon";
+import UsersIcon from "../icons/UsersIcon";
 
 function JobCard({ jobs }) {
 
@@ -116,20 +120,20 @@ function JobCard({ jobs }) {
 										</Link>
 									</h3>
 									<div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-										<a
-											href="company-profile.html"
+										<span
 											className="hover:text-primary font-medium"
+											reloadDocument
 										>
 											{job.company.name}
-										</a>
+										</span>
 										<span>•</span>
 										<span className="flex items-center gap-1">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin h-4 w-4"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="map-pin" className="lucide lucide-map-pin h-4 w-4"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
 											{job.company.location}
 										</span>
 										<span>•</span>
 										<span className="flex items-center gap-1">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock h-4 w-4"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="clock" className="lucide lucide-clock h-4 w-4"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
 											{timeAgo(job.createdAt)}
 										</span>
 									</div>
@@ -152,7 +156,7 @@ function JobCard({ jobs }) {
 										${job.salaryMin} - ${job.salaryMax}
 									</span>
 									<span className="text-xs text-muted-foreground flex items-center gap-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="users" className="lucide lucide-users h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
 										{job.applicants} applicants
 									</span>
 								</div>
