@@ -30,7 +30,7 @@ function JobCard({ jobs }) {
 			setApplyJobId(jobId);
 			setRenderModal(true);
 		} else {
-			alert("Please login to apply for a job");
+			alert("Please login as job seeker to apply for a job");
 		}
 	}
 

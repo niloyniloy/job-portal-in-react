@@ -7,7 +7,7 @@ import EditIcon from './../icons/EditIcon'
 import FileTextIcon from './../icons/FileTextIcon' 
 import LightbulbIcon from './../icons/LightbulbIcon' 
 import EyeIcon from './../icons/EyeIcon'
-import MapPinSmall from './../icons/MapPinSmall'
+import MapPinIconSmall from './../icons/MapPinIconSmall'
 
 function UserProfile() {
 
@@ -88,7 +88,7 @@ function UserProfile() {
 												</div>
 												<div className="flex flex-wrap items-center gap-3 text-xs text-[hsl(var(--color-muted-foreground))] mb-3">
 													<span className="flex items-center gap-1">
-														<MapPinSmall />
+														<MapPinIconSmall />
 														{job?.job?.company?.location}
 													</span>
 													<span>•</span>
@@ -172,7 +172,7 @@ function UserProfile() {
 												<div className="flex items-center justify-between">
 													<div className="flex items-center gap-3 text-xs text-[hsl(var(--color-muted-foreground))]">
 														<span className="flex items-center gap-1">
-															<MapPinSmall />
+															<MapPinIconSmall />
 															{job.location}
 														</span>
 														<span className="font-semibold text-[hsl(var(--color-primary))]">
